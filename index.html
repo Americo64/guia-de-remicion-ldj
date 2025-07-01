@@ -239,17 +239,17 @@
             { id: 'prod48', descripcion: 'LIGAS DE POLLO', unidad: 'PQT', itemsPerUnit: 1.0 },
             { id: 'prod49', descripcion: 'LIGAS', unidad: 'CAJA', itemsPerUnit: 1.0 },
             { id: 'prod50', descripcion: 'ACEITE DE AJONJOLI', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod51', descripcion: 'FILETE DE PECHUGA x 30', unidad: 'UND', itemsPerUnit: 30 },
-            { id: 'prod52', descripcion: 'MOLLEJA DE POLLO x 25', unidad: 'PORC', itemsPerUnit: 25 },
-            { id: 'prod53', descripcion: 'LOMO X 200 GR x 20', unidad: 'UND', itemsPerUnit: 20 },
-            { id: 'prod54', descripcion: 'CHULETA x 20', unidad: 'UND', itemsPerUnit: 20 },
-            { id: 'prod55', descripcion: 'RACHI x 20', unidad: 'PORC', itemsPerUnit: 20 },
+            { id: 'prod51', descripcion: 'FILETE DE PECHUGA x 30', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod52', descripcion: 'MOLLEJA DE POLLO x 25', unidad: 'PORC', itemsPerUnit: 1.0 },
+            { id: 'prod53', descripcion: 'LOMO X 200 GR x 20', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod54', descripcion: 'CHULETA x 20', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod55', descripcion: 'RACHI x 20', unidad: 'PORC', itemsPerUnit: 1.0 },
             { id: 'prod56', descripcion: 'ANTICUCHO x 40', unidad: 'PAL', itemsPerUnit: 40 },
-            { id: 'prod57', descripcion: 'BIFE x 20', unidad: 'UND', itemsPerUnit: 20 },
-            { id: 'prod58', descripcion: 'CHURRASCO x 15', unidad: 'UND', itemsPerUnit: 15 },
-            { id: 'prod59', descripcion: 'CHORIZO x 60', unidad: 'UND', itemsPerUnit: 60 },
-            { id: 'prod60', descripcion: 'COSTILLA x 15', unidad: 'UND', itemsPerUnit: 15 },
-            { id: 'prod61', descripcion: 'MORCILLA', unidad: 'UND', itemsPerUnit: 12 },
+            { id: 'prod57', descripcion: 'BIFE x 20', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod58', descripcion: 'CHURRASCO x 15', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod59', descripcion: 'CHORIZO x 60', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod60', descripcion: 'COSTILLA x 15', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod61', descripcion: 'MORCILLA', unidad: 'UND', itemsPerUnit: 1.0 },
             { id: 'prod62', descripcion: 'PIQUEO', unidad: 'PQT', itemsPerUnit: 1.0 },
             { id: 'prod63', descripcion: 'ALITAS', unidad: 'PQT', itemsPerUnit: 1.0 },
             { id: 'prod64', descripcion: 'GASEOSA INCA KOLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
@@ -568,7 +568,7 @@
                     unidad: productDetail ? productDetail.unidad : '', // Unidad de medida (ej. DOC, KG, UND)
                     descripcion: productDetail ? productDetail.descripcion : 'Producto no encontrado',
                     unidadesEnPaquete: productDetail ? productDetail.itemsPerUnit : 0, // Elementos por unidad para el cálculo
-                    // Calcula el total de unidades individuales para la columna "Unidades" en el PDF
+                    // Calcula el total de unidades individuales para la "Unidades" en el PDF
                     totalUnidadesIndividuales: productDetail ? parseFloat(item.cantidad) * productDetail.itemsPerUnit : 0,
                 };
             });
@@ -663,7 +663,7 @@
                     </table>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.1rem; margin-top: 0.5rem; font-size: 0.8rem; color: #374151;">
+                <div class="print-conformidad-cliente" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.1rem; margin-top: 0.5rem; font-size: 0.8rem; color: #374151;">
                     <div>
                         <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">Modalidad de Traslado:</span> ${guiaGenerada.modalidadTraslado}</p>
                         <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">Dato de vehículo:</span> Placa: ${guiaGenerada.placaVehiculo}</p>
@@ -789,5 +789,8 @@
             renderProductRows();
         });
     </script>
+</body>
+</html>
+
 </body>
 </html>
