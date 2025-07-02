@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Guías de Remisión</title>
+    <!-- Tailwind CSS CDN (para estilos rápidos y responsivos) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter (fuente para un diseño moderno) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados para el cuerpo y la funcionalidad de impresión */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6; /* Fondo gris claro */
+        }
+        /* Estilos de impresión para ocultar el contenido no relacionado con la guía al imprimir */
+        @media print {
+            body * {
+                visibility: hidden; /* Oculta todos los elementos del cuerpo por defecto */
+            }
+            #guia-content, #guia-content * {
+                visibility: visible; /* Hace visible solo el contenido de la guía y sus hijos */
+            }
+            #guia-content {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 10px; /* Relleno reducido para la impresión */
+                box-sizing: border-box;
+                font-size: 0.8rem; /* Tamaño de fuente base para la impresión */
+            }
+            #guia-content h2, #guia-content h3 {
+                margin-top: 0.5rem;
+                margin-bottom: 0.25rem;
+            }
+            #guia-content p {
+                margin-bottom: 0.1rem; /* Espaciado de línea más ajustado */
+            }
+            #guia-content table {
+                font-size: 0.75rem; /* Fuente más pequeña para la tabla */
+            }
+            #guia-content th, #guia-content td {
+                padding: 4px 8px; /* Relleno de celda más ajustado */
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center p-4">
+
+    <h1 class="text-4xl font-bold text-gray-800 mb-8 mt-4 text-center">Generar Guías de Remisión LO DE JUAN</h1>
+
+    <!-- Formulario principal para la generación de la guía -->
+    <form id="guideForm" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Sección de Remitente -->
+            <div>
+                <label for="remitente" class="block text-gray-700 text-sm font-semibold mb-2">Remitente:</label>
+                <select id="remitente" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="">Seleccione un remitente</option>
+                </select>
+            </div>
+
+            <!-- Sección de Destinatario -->
+            <div>
+                <label for="destinatario" class="block text-gray-700 text-sm font-semibold mb-2">Destinatario:</label>
+                <select id="destinatario" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="">Seleccione un destinatario</option>
+                </select>
+            </div>
+
+            <!-- Sección de Dirección de Partida -->
+            <div>
+                <label for="direccionPartida" class="block text-gray-700 text-sm font-semibold mb-2">Dirección de Partida:</label>
+                <select id="direccionPartida" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="">Seleccione una dirección</option>
+                </select>
+            </div>
+
+            <!-- Sección de Dirección de Llegada -->
+            <div>
+                <label for="direccionLlegada" class="block text-gray-700 text-sm font-semibold mb-2">Dirección de Llegada:</label>
+                <select id="direccionLlegada" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="">Seleccione una dirección</option>
+                </select>
+            </div>
+
+            <!-- Sección de Fecha de Emisión -->
+            <div>
+                <label for="fechaEmision" class="block text-gray-700 text-sm font-semibold mb-2">Fecha de Emisión:</label>
+                <input type="date" id="fechaEmision" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+
+            <!-- Sección de Motivo de Traslado (ahora opcional) -->
+            <div>
+                <label for="motivoTraslado" class="block text-gray-700 text-sm font-semibold mb-2">Motivo de Traslado:</label>
+                <select id="motivoTraslado" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Seleccione un motivo</option>
+                    <option value="Venta">Venta</option>
+                    <option value="Traslado">Traslado</option>
+                    <option value="Otros">Otros</option>
+                </select>
+            </div>
+
+            <!-- Sección de Modalidad de Traslado -->
+            <div class="md:col-span-2">
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Modalidad de Traslado:</label>
+                <div class="flex items-center space-x-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="modalidadTraslado" value="Privado" class="form-radio text-blue-600" checked>
+                        <span class="ml-2 text-gray-700">Privado</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="modalidadTraslado" value="Público" class="form-radio text-blue-600">
+                        <span class="ml-2 text-gray-700">Público</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Sección de Datos del Vehículo -->
+            <div>
+                <label for="placaVehiculo" class="block text-gray-700 text-sm font-semibold mb-2">Placa del Vehículo:</label>
+                <input type="text" id="placaVehiculo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" value="BVD 734" required>
+            </div>
+
+            <!-- Sección de Datos del Conductor -->
+            <div>
+                <label for="nombreConductor" class="block text-gray-700 text-sm font-semibold mb-2">Nombre del Conductor:</label>
+                <input type="text" id="nombreConductor" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" value="Emerson De la Cruz Cardenas" required>
+            </div>
+            <div>
+                <label for="dniConductor" class="block text-gray-700 text-sm font-semibold mb-2">DNI del Conductor:</label>
+                <input type="text" id="dniConductor" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" value="75493844" required>
+            </div>
+            <div>
+                <label for="licenciaConducir" class="block text-gray-700 text-sm font-semibold mb-2">Nro. de Licencia de Conducir:</label>
+                <input type="text" id="licenciaConducir" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" value="Q75493844" required>
+            </div>
+        </div>
+
+        <!-- Sección de Productos -->
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Detalle de Productos:</h2>
+        <div id="productosContainer" class="space-y-4 mb-6">
+            <!-- Las filas de productos se añadirán aquí mediante JavaScript -->
+        </div>
+        <button type="button" id="addProductoBtn" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors shadow-md mb-6">
+            Añadir Producto
+        </button>
+
+        <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg transform hover:scale-105">
+            Generar Guía de Remisión
+        </button>
+    </form>
+
+    <!-- Modal para la Guía Generada (se muestra al hacer clic en "Generar Guía") -->
+    <div id="guiaModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div id="modalContent" class="bg-white rounded-xl shadow-2xl w-full max-w-4xl p-8 relative overflow-y-auto max-h-[90vh]">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
+                &times;
+            </button>
+            <div id="guia-content" class="p-6 border border-gray-300 rounded-lg">
+                <!-- El contenido de la guía se inyectará aquí mediante JavaScript -->
+            </div>
+            <div class="flex justify-center mt-6">
+                <button id="printGuideBtn" class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors shadow-lg transform hover:scale-105 mr-4">
+                    Imprimir Guía
+                </button>
+                <button id="closeModalBtnBottom" class="px-6 py-3 bg-gray-500 text-white font-bold rounded-lg hover:bg-gray-600 transition-colors shadow-lg transform hover:scale-105">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos simulados (mock data) para empresas, productos y direcciones.
+        // En una aplicación real, estos datos se cargarían desde una base de datos o una API.
+        const mockEmpresas = [
+            { id: 'emp1', ruc: '20609607395', razonSocial: 'IJG Inversiones Janampa Guevara S.A.C.', direccion: 'Av. Victor Malasquez Mza. B2 Lote. 09 A.H. Huertos De Manchay', distrito: 'Pachacamac', provincia: 'Lima', departamento: 'Lima' },
+            { id: 'emp2', ruc: '20609518562', razonSocial: 'ICM Inversiones Cortez Maldonado S.A.C.', direccion: 'Ch. Pachac. Iv Et. Parc. 3a Manzana Z1 Lote 25', distrito: 'Pachacamac', provincia: 'Lima', departamento: 'Lima' },
+            { id: 'emp3', ruc: '20546449573', razonSocial: 'Lo De Juan Chicken Grill S.R.L', direccion: 'Av. Victor Malasquez Mza. B2 Lote. 09 A.H. Huertos De Manchay', distrito: 'Pachacamac', provincia: 'Lima', departamento: 'Lima' },
+            { id: 'emp4', ruc: '20610392017', razonSocial: 'Tucfer S.A.C.', direccion: 'Grupo Residencial 27a Mza. I Lote. 21 sec. 3', distrito: 'Villa El Salvador', provincia: 'Lima', departamento: 'Lima' },
+            { id: 'emp5', ruc: '20608779532', razonSocial: 'Alero Inversiones S.A.C.', direccion: 'Av. Talara Con Los Alamos Mza. A Lote. 13 Sec. 3 - Grupo 24', distrito: 'Villa El Salvador', provincia: 'Lima', departamento: 'Lima' },
+        ];   
+
+        const mockProductos = [
+            { id: 'prod1', descripcion: 'LECHUGA AMERICANA', unidad: 'DOC', itemsPerUnit: 12.0 },
+            { id: 'prod2', descripcion: 'LECHUGA CRESPA', unidad: 'DOC', itemsPerUnit: 12.0 },
+            { id: 'prod3', descripcion: 'LIMON', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod4', descripcion: 'MANZANA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod5', descripcion: 'PALTA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod6', descripcion: 'PAPA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod7', descripcion: 'PECANA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod8', descripcion: 'PEPINO', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod9', descripcion: 'PIMIENTO', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod10', descripcion: 'PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod11', descripcion: 'ROMERO', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod12', descripcion: 'TOMATE', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod13', descripcion: 'VAINITA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod14', descripcion: 'ZANAHORIA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod15', descripcion: 'AJO', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod16', descripcion: 'BETERRAGA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod17', descripcion: 'CEBOLLA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod18', descripcion: 'CHAMPIGÑON', unidad: 'BANDEJA', itemsPerUnit: 1.0 },
+            { id: 'prod19', descripcion: 'CHOCLO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod20', descripcion: 'ESPICANAS', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod21', descripcion: 'HUEVO DE CODORNIZ', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod22', descripcion: 'NARANJA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod23', descripcion: 'BRÓCOLI', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod24', descripcion: 'ACEITE MONTESOL X 18 Lt.', unidad: 'LATA', itemsPerUnit: 1.0 },
+            { id: 'prod25', descripcion: 'ACEITE DE OLIVA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod26', descripcion: 'ANÍS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod27', descripcion: 'ARROZ', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod28', descripcion: 'AZÚCAR SACHET', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod29', descripcion: 'AZÚCAR BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod30', descripcion: 'AZÚCAR RUBIA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod31', descripcion: 'CAFÉ GRANEL', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod32', descripcion: 'GUANTES DE CUERO', unidad: 'PAR', itemsPerUnit: 2.0 },
+            { id: 'prod33', descripcion: 'KETCHUP GRANEL', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod34', descripcion: 'KETCHUP SACHET', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod35', descripcion: 'LECHE EVAPORADA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod36', descripcion: 'MANZANILLA', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod37', descripcion: 'MOSTAZA GRANEL', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod38', descripcion: 'MOSTAZA SACHET', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod39', descripcion: 'PIÑA EN CONSERVA', unidad: 'LATA', itemsPerUnit: 1.0 },
+            { id: 'prod40', descripcion: 'SAL', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod41', descripcion: 'SALSA BBQ', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod42', descripcion: 'TÉ', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod43', descripcion: 'PIMIENTA NEGRA', unidad: 'FRASCO', itemsPerUnit: 1.0 },
+            { id: 'prod44', descripcion: 'SERVILLETAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod45', descripcion: 'SODA CAUSTICA ESCAMAS', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod46', descripcion: 'SORBETE ESPECIAL PLANCHA', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod47', descripcion: 'PAPEL MANTECA', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod48', descripcion: 'LIGAS DE POLLO', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod49', descripcion: 'LIGAS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod50', descripcion: 'ACEITE DE AJONJOLI', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod51', descripcion: 'FILETE DE PECHUGA x 30', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod52', descripcion: 'MOLLEJA DE POLLO x 25', unidad: 'PORC', itemsPerUnit: 1.0 },
+            { id: 'prod53', descripcion: 'LOMO X 200 GR x 20', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod54', descripcion: 'CHULETA x 20', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod55', descripcion: 'RACHI x 20', unidad: 'PORC', itemsPerUnit: 1.0 },
+            { id: 'prod56', descripcion: 'ANTICUCHO x 40', unidad: 'PAL', itemsPerUnit: 40 },
+            { id: 'prod57', descripcion: 'BIFE x 20', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod58', descripcion: 'CHURRASCO x 15', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod59', descripcion: 'CHORIZO x 60', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod60', descripcion: 'COSTILLA x 15', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod61', descripcion: 'MORCILLA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod62', descripcion: 'PIQUEO', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod63', descripcion: 'ALITAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod64', descripcion: 'GASEOSA INCA KOLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod65', descripcion: 'GASEOSA INCA KOLA DE 1 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod66', descripcion: 'GASEOSA INCA KOLA DE 1/2 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod67', descripcion: 'GASEOSA COCA COLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod68', descripcion: 'GASEOSA COCA COLA DE 1 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod69', descripcion: 'GASEOSA COCA COLA DE 1/2 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod70', descripcion: 'CERCEZA PILSEN', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod71', descripcion: 'CERCEZA CUSQUEÑA NEGRA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod72', descripcion: 'CERCEZA CUSQUEÑA DORADA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod73', descripcion: 'CERCEZA CUSQUEÑA TRIGO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod74', descripcion: 'AGUA MINERAL 3 LITROS', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod75', descripcion: 'AGUA SAN LUIS CON GAS 600 ML', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod76', descripcion: 'AGUA SAN LUIS SIN GAS 600 ML', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod77', descripcion: 'ALGARROBINA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod78', descripcion: 'AMARGO DE ANGOSTURA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod79', descripcion: 'CREMA DE COCO', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod80', descripcion: 'CREMA DE MENTA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod81', descripcion: 'EVERVESS', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod82', descripcion: 'JARABE DE GOMA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod83', descripcion: 'JARABE DE GRANDINA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod84', descripcion: 'JUGO DE PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod85', descripcion: 'JUGO DE NARANJA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod86', descripcion: 'LICOR DE CACAO', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod87', descripcion: 'MARRASQUINO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod88', descripcion: 'PISCO', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod89', descripcion: 'RON BLANCO', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod90', descripcion: 'RON RUBIO', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod91', descripcion: 'VINO BORGOÑA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod92', descripcion: 'VINO MAGDALENA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod93', descripcion: 'VINO PEDRAS NEGRAS', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod94', descripcion: 'VINO ROSÉ', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod95', descripcion: 'VINO INTIKALPA', unidad: 'BOT', itemsPerUnit: 1.0 },
+            { id: 'prod96', descripcion: 'VINO BLANCO (gato negro)', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod97', descripcion: 'AJÍ', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod98', descripcion: 'VINAGRETA', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod99', descripcion: 'MAYONESA', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod100', descripcion: 'CHIMICHURRI', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod101', descripcion: 'ACEVICHADO', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod102', descripcion: 'BBQ ROCOTO', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod103', descripcion: 'BBQ AJI LIMO', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod104', descripcion: 'BBQ LJD', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod105', descripcion: 'CHIMUCHIRI x 2', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod106', descripcion: 'SALSA ANTICUCHERA X 1', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod107', descripcion: 'SAL PREPARADA X 2', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod108', descripcion: 'ADEREZO PARRILLA 1', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod109', descripcion: 'SALSA DE OREGANO X 250', unidad: 'GR', itemsPerUnit: 1.0 },
+            { id: 'prod110', descripcion: 'AHUMADO PARA CHAUFA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod111', descripcion: 'DETERGENTE', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod112', descripcion: 'ESCOBA DE MADERA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod113', descripcion: 'ESCOBA DE PARRILLA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod114', descripcion: 'ESCOBA DE PLÁSTICO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod115', descripcion: 'ESPONJA DUO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod116', descripcion: 'ESPONJA MÁQUINA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod117', descripcion: 'ESPONJA VERDE', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod118', descripcion: 'JALADOR', unidad: 'GL', itemsPerUnit: 1.0 },
+            { id: 'prod119', descripcion: 'LIMPIAVIDRIOS', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod120', descripcion: 'MATAMOSCAS', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod121', descripcion: 'RECOGEDOR', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod122', descripcion: 'SECADORES', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod123', descripcion: 'TOALLA DE MANO', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod124', descripcion: 'TRAPEADOR', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod125', descripcion: 'ENVACE AJICEROS X 2400 UNID', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod126', descripcion: 'TAPA AJICEROS X 2400 UNID', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod127', descripcion: 'PALITOS DE BROCHETAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod128', descripcion: 'BOLSAS 12X16', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod129', descripcion: 'BOLSAS 16X19', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod130', descripcion: 'BOLSAS 19X20', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod131', descripcion: 'BOLSAS 20X30', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod132', descripcion: 'BOLSAS 220 LT', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod133', descripcion: 'BOLSAS 8X12', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod134', descripcion: 'BOLSAS 50 LT', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod135', descripcion: 'TAPER ENSALADA DE POLLO', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod136', descripcion: 'TAPER ENSALADA DE MEDIO', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod137', descripcion: 'CUCHARITAS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod138', descripcion: 'GORROS DESCARTABLES', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod139', descripcion: 'GUANTES QUIRURGICOS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod140', descripcion: 'LIGAS DE DESPACHO', unidad: 'CAJA', itemsPerUnit: 1.0 },
+            { id: 'prod141', descripcion: 'MONDADIENTES', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod142', descripcion: 'REMOVEDORES', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod143', descripcion: 'SERVILLETAS DOBLADAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod144', descripcion: 'SORBETES X 50 BLANCOS', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod145', descripcion: 'SORBETES NEGROS', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod146', descripcion: 'VASOS DESCARTABLES', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod147', descripcion: 'TENEDORES DESCATRTABLES', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod148', descripcion: 'PLATOS DESCARTABLES GRANDES', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod149', descripcion: 'PLATOS DESCARTABLES CHICOS', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod150', descripcion: 'TAPER 500 ML', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod151', descripcion: 'POLIGRASA', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod152', descripcion: 'ENVASE POLLERO', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod153', descripcion: 'CUCHILLO DESCARTABLE', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod154', descripcion: 'TRES LECHES', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod155', descripcion: 'MOUSE DE CHOCOLATE', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod156', descripcion: 'DERRUMBADO DE LÚCUMA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod157', descripcion: 'DERRUMBADO DE FRUTOS ROJOS', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod158', descripcion: 'CREMAS VOLTEADA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod159', descripcion: 'TORTA DE CHOCOLATE', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod160', descripcion: 'POSTRES CUMPLEAÑOS', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod161', descripcion: 'CHICHA MORADA', unidad: 'BAL', itemsPerUnit: 1.0 },
+            { id: 'prod162', descripcion: 'MARACUYÁ', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod163', descripcion: 'DESHIDRATADO DE LIMON', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod164', descripcion: 'DESHIDRATADO DE NARANJA', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod165', descripcion: 'DESHIDRATADO DE PIÑA', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod166', descripcion: 'ARANDANO CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod167', descripcion: 'PIÑA CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod168', descripcion: 'FRESA CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
+            { id: 'prod169', descripcion: 'POLLO A LA BRASA', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod170', descripcion: 'CARBÓN', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod171', descripcion: 'LEÑA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod172', descripcion: 'PAPA PROCESADA', unidad: 'KG', itemsPerUnit: 1.0 },
+        ];
+
+        // Objeto para almacenar direcciones únicas, evitando duplicados.
+        const uniqueAddresses = {};
+        let addressIdCounter = 1;
+
+        // Añade direcciones de mockEmpresas a uniqueAddresses
+        mockEmpresas.forEach(emp => {
+            const fullAddress = `${emp.direccion} ${emp.distrito} - ${emp.provincia} - ${emp.departamento}`;
+            // Verifica si la dirección ya existe en uniqueAddresses
+            if (!Object.values(uniqueAddresses).some(addr => addr.direccionCompleta === emp.direccion && addr.distrito === emp.distrito && addr.provincia === emp.provincia && addr.departamento === emp.departamento)) {
+                uniqueAddresses[`dir${addressIdCounter}`] = {
+                    id: `dir${addressIdCounter}`,
+                    direccionCompleta: emp.direccion,
+                    distrito: emp.distrito,
+                    provincia: emp.provincia,
+                    departamento: emp.departamento
+                };
+                addressIdCounter++;
+            }
+        });
+
+        // mockDirecciones se crea a partir de las direcciones únicas recopiladas
+        const mockDirecciones = Object.values(uniqueAddresses);
+
+        // Estado global para los productos en el formulario
+        let currentProducts = [{ id: 1, cantidad: '', producto: '' }];
+        let productIdCounter = 1;
+
+        /**
+         * Formatea una cadena de fecha a un formato legible (DD/MM/AAAA).
+         * @param {string} dateString - La cadena de fecha a formatear.
+         * @returns {string} La fecha formateada.
+         */
+        const formatDate = (dateString) => {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(dateString).toLocaleDateString('es-ES', options);
+        };
+
+        /**
+         * Rellena un elemento <select> con opciones basadas en los datos proporcionados.
+         * @param {string} selectId - El ID del elemento <select>.
+         * @param {Array<Object>} data - El array de objetos con los datos para las opciones.
+         * @param {string} valueKey - La clave del objeto a usar como valor de la opción.
+         * @param {Array<string> | string} displayKeys - Una clave o un array de claves para construir el texto visible de la opción.
+         */
+        const populateSelect = (selectId, data, valueKey, displayKeys) => {
+            const selectElement = document.getElementById(selectId);
+            selectElement.innerHTML = '<option value="">Seleccione una opción</option>'; // Limpia opciones existentes y añade una por defecto
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item[valueKey];
+                let displayText = '';
+                if (Array.isArray(displayKeys)) {
+                    // Para empresas, muestra Razón Social y RUC
+                    if (selectId === 'remitente' || selectId === 'destinatario') {
+                        displayText = `${item.razonSocial} (RUC: ${item.ruc})`;
+                    } else { // Para direcciones, muestra la dirección completa
+                        displayText = `${item.direccionCompleta}, ${item.distrito} - ${item.provincia} - ${item.departamento}`;
+                    }
+                } else { // Si es una sola clave o una cadena compleja
+                    displayText = item[displayKeys];
+                }
+                option.textContent = displayText;
+                selectElement.appendChild(option);
+            });
+        };
+
+        // Añade listeners de eventos para el autocompletado de direcciones al seleccionar una empresa
+        document.getElementById('remitente').addEventListener('change', (e) => {
+            const selectedCompanyId = e.target.value;
+            const selectedCompany = mockEmpresas.find(emp => emp.id === selectedCompanyId);
+            if (selectedCompany) {
+                // Encuentra la ID de la dirección correspondiente en mockDirecciones
+                const addressOption = mockDirecciones.find(dir => 
+                    dir.direccionCompleta === selectedCompany.direccion &&
+                    dir.distrito === selectedCompany.distrito &&
+                    dir.provincia === selectedCompany.provincia &&
+                    dir.departamento === selectedCompany.departamento
+                );
+                if (addressOption) {
+                    document.getElementById('direccionPartida').value = addressOption.id;
+                }
+            } else {
+                document.getElementById('direccionPartida').value = ''; // Limpia si no hay empresa seleccionada
+            }
+        });
+
+        document.getElementById('destinatario').addEventListener('change', (e) => {
+            const selectedCompanyId = e.target.value;
+            const selectedCompany = mockEmpresas.find(emp => emp.id === selectedCompanyId);
+            if (selectedCompany) {
+                // Encuentra la ID de la dirección correspondiente en mockDirecciones
+                const addressOption = mockDirecciones.find(dir => 
+                    dir.direccionCompleta === selectedCompany.direccion &&
+                    dir.distrito === selectedCompany.distrito &&
+                    dir.provincia === selectedCompany.provincia &&
+                    dir.departamento === selectedCompany.departamento
+                );
+                if (addressOption) {
+                    document.getElementById('direccionLlegada').value = addressOption.id;
+                }
+            } else {
+                document.getElementById('direccionLlegada').value = ''; // Limpia si no hay empresa seleccionada
+            }
+        });
+
+        /**
+         * Renderiza las filas de productos en el formulario.
+         * Crea dinámicamente los selectores de productos y campos de cantidad.
+         */
+        const renderProductRows = () => {
+            const container = document.getElementById('productosContainer');
+            container.innerHTML = ''; // Limpia las filas existentes
+
+            currentProducts.forEach(item => {
+                const productRow = document.createElement('div');
+                productRow.className = 'flex flex-col md:flex-row items-center gap-4 p-4 border border-gray-200 rounded-lg bg-gray-50';
+                productRow.innerHTML = `
+                    <div class="flex-1 w-full">
+                        <label for="producto-${item.id}" class="block text-gray-700 text-xs font-medium mb-1">Producto:</label>
+                        <select id="producto-${item.id}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm" required>
+                            <option value="">Seleccione un producto</option>
+                            ${mockProductos.map(prod => `<option value="${prod.id}" ${item.producto === prod.id ? 'selected' : ''}>${prod.descripcion}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="w-full md:w-auto">
+                        <label for="cantidad-${item.id}" class="block text-gray-700 text-xs font-medium mb-1">Cantidad:</label>
+                        <input type="number" id="cantidad-${item.id}" value="${item.cantidad}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm" min="1" required>
+                    </div>
+                    ${currentProducts.length > 1 ? `
+                    <button type="button" data-id="${item.id}" class="remove-product-btn mt-4 md:mt-0 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors shadow-md">
+                        Eliminar
+                    </button>` : ''}
+                `;
+                container.appendChild(productRow);
+
+                // Añade listeners de eventos para los nuevos elementos
+                const productSelect = document.getElementById(`producto-${item.id}`);
+                
+                productSelect.addEventListener('change', (e) => {
+                    const productId = parseInt(e.target.id.split('-')[1]);
+                    const productIndex = currentProducts.findIndex(p => p.id === productId);
+                    if (productIndex !== -1) {
+                        currentProducts[productIndex].producto = e.target.value;
+                    }
+                });
+                document.getElementById(`cantidad-${item.id}`).addEventListener('input', (e) => {
+                    const productId = parseInt(e.target.id.split('-')[1]);
+                    const productIndex = currentProducts.findIndex(p => p.id === productId);
+                    if (productIndex !== -1) {
+                        currentProducts[productIndex].cantidad = e.target.value;
+                    }
+                });
+            });
+
+            // Añade listeners de eventos para los botones de eliminar
+            document.querySelectorAll('.remove-product-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const idToRemove = parseInt(e.target.dataset.id);
+                    currentProducts = currentProducts.filter(prod => prod.id !== idToRemove);
+                    renderProductRows(); // Vuelve a renderizar para actualizar la interfaz
+                });
+            });
+        };
+
+        // Listener de evento para añadir una nueva fila de producto
+        document.getElementById('addProductoBtn').addEventListener('click', () => {
+            productIdCounter++;
+            currentProducts.push({ id: productIdCounter, cantidad: '', producto: '' });
+            renderProductRows();
+        });
+
+        // Listener de evento para el envío del formulario
+        document.getElementById('guideForm').addEventListener('submit', (e) => {
+            e.preventDefault(); // Previene el envío por defecto del formulario
+
+            // Obtiene los valores del formulario
+            const remitenteId = document.getElementById('remitente').value;
+            const destinatarioId = document.getElementById('destinatario').value;
+            const direccionPartidaId = document.getElementById('direccionPartida').value;
+            const direccionLlegadaId = document.getElementById('direccionLlegada').value;
+            const fechaEmision = document.getElementById('fechaEmision').value;
+            const motivoTraslado = document.getElementById('motivoTraslado').value;
+            const modalityTrasladoRadio = document.querySelector('input[name="modalidadTraslado"]:checked');
+            const modalidadTraslado = modalityTrasladoRadio ? modalityTrasladoRadio.value : '';
+            const placaVehiculo = document.getElementById('placaVehiculo').value;
+            const nombreConductor = document.getElementById('nombreConductor').value;
+            const dniConductor = document.getElementById('dniConductor').value;
+            const licenciaConducir = document.getElementById('licenciaConducir').value;
+
+
+            // Encuentra los datos seleccionados de las listas simuladas
+            const selectedRemitente = mockEmpresas.find(emp => emp.id === remitenteId);
+            const selectedDestinatario = mockEmpresas.find(emp => emp.id === destinatarioId);
+            const selectedDireccionPartida = mockDirecciones.find(dir => dir.id === direccionPartidaId);
+            const selectedDireccionLlegada = mockDirecciones.find(dir => dir.id === direccionLlegadaId);
+
+            // Procesa los productos con sus detalles completos
+            const productsWithDetails = currentProducts.map((item, index) => {
+                const productDetail = mockProductos.find(p => p.id === item.producto);
+                return {
+                    nro: index + 1, // Corresponde a "Nro.:" en el PDF
+                    cantidad: item.cantidad, // Cantidad ingresada por el usuario
+                    unidad: productDetail ? productDetail.unidad : '', // Unidad de medida (ej. DOC, KG, UND)
+                    descripcion: productDetail ? productDetail.descripcion : 'Producto no encontrado',
+                    unidadesEnPaquete: productDetail ? productDetail.itemsPerUnit : 0, // Elementos por unidad para el cálculo
+                    // Calcula el total de unidades individuales para la "Unidades" en el PDF
+                    totalUnidadesIndividuales: productDetail ? parseFloat(item.cantidad) * productDetail.itemsPerUnit : 0,
+                };
+            });
+
+            // Construye el objeto de datos de la guía generada
+            const guiaGenerada = {
+                remitente: selectedRemitente,
+                destinatario: selectedDestinatario,
+                direccionPartida: selectedDireccionPartida,
+                direccionLlegada: selectedDireccionLlegada,
+                fechaEmision,
+                motivoTraslado,
+                modalidadTraslado,
+                placaVehiculo,
+                nombreConductor,
+                dniConductor,
+                licenciaConducir,
+                productos: productsWithDetails,
+                numeroGuia: `GR-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`, // Número de guía aleatorio
+            };
+
+            // Determina el estado de los checkboxes para el motivo de traslado
+            const isVentaChecked = guiaGenerada.motivoTraslado === 'Venta' ? 'X' : ' ';
+            const isTrasladoChecked = guiaGenerada.motivoTraslado === 'Traslado' ? 'X' : ' ';
+            const isOtrosChecked = guiaGenerada.motivoTraslado === 'Otros' ? 'X' : ' ';
+
+            // Renderiza el contenido de la guía en el modal
+            const guiaContentDiv = document.getElementById('guia-content');
+            guiaContentDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.2rem; padding-bottom: 0.2rem; border-bottom: 1px solid #e2e8f0;">
+                    <div style="flex-grow: 1; font-size: 0.8rem;">
+                        <h2 style="font-size: 1rem; font-weight: bold; color: #1f2937; margin-bottom: 0; display: inline-block; vertical-align: middle;">${guiaGenerada.remitente.razonSocial}</h2>
+                        <p style="color: #4b5563; margin-bottom: 0;">RUC: ${guiaGenerada.remitente.ruc}</p>
+                        <p style="color: #4b5563; margin-bottom: 0;">${guiaGenerada.remitente.direccion}</p>
+                    </div>
+                    <div style="text-align: right; font-size: 0.8rem;">
+                        <p style="font-size: 1.1rem; font-weight: bolder; color: #dc2626; margin-bottom: 0.1rem;">GUIA DE REMISION</p>
+                        <p style="font-size: 0.9rem; font-weight: bold; color: #1f2937; margin-bottom: 0.1rem;">Nro. ${guiaGenerada.numeroGuia}</p>
+                        <p style="color: #374151; margin-bottom: 0;">Fecha de emisión: ${formatDate(guiaGenerada.fechaEmision)}</p>
+                        <p style="color: #374151; margin-bottom: 0;">Fecha de inicio de Traslado: ${formatDate(guiaGenerada.fechaEmision)}</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.1rem; margin-bottom: 0.2rem; padding-bottom: 0.2rem; border-bottom: 1px solid #e2e8f0; font-size: 0.8rem;">
+                    <div>
+                        <p style="font-weight: bold; color: #1f2937; margin-bottom: 0.05rem;">Punto de Partida:</p>
+                        <p style="color: #374151; margin-bottom: 0.05rem;">${guiaGenerada.direccionPartida.direccionCompleta}</p>
+                        <p style="color: #374151; margin-bottom: 0.05rem;">${guiaGenerada.direccionPartida.distrito} - ${guiaGenerada.direccionPartida.provincia} - ${guiaGenerada.direccionPartida.departamento}</p>
+                    </div>
+                    <div>
+                        <p style="font-weight: bold; color: #1f2937; margin-bottom: 0.05rem;">Punto de llegada:</p>
+                        <p style="color: #374151; margin-bottom: 0.05rem;">${guiaGenerada.direccionLlegada.direccionCompleta}</p>
+                        <p style="color: #374151; margin-bottom: 0.05rem;">${guiaGenerada.direccionLlegada.distrito} - ${guiaGenerada.direccionLlegada.provincia} - ${guiaGenerada.direccionLlegada.departamento}</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.1rem; margin-bottom: 0.2rem; padding-bottom: 0.2rem; border-bottom: 1px solid #e2e8f0; font-size: 0.8rem;">
+                    <div>
+                        <p style="font-weight: bold; color: #1f2937; margin-bottom: 0.05rem;">Motivo de Traslado:</p>
+                        <p style="color: #374151; margin-bottom: 0.05rem;">[${isVentaChecked}] Venta &nbsp; [${isTrasladoChecked}] Traslado &nbsp; [${isOtrosChecked}] Otros</p>
+                    </div>
+                    <div>
+                        <p style="font-weight: bold; color: #1f2937; margin-bottom: 0.05rem;">Datos del Destinatario:</p>
+                        <p style="color: #374151; margin-bottom: 0.05rem;">RUC: ${guiaGenerada.destinatario.ruc}</p>
+                        <p style="color: #374151; margin-bottom: 0.05rem;">Razón Social: ${guiaGenerada.destinatario.razonSocial}</p>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 0.9rem; font-weight: bold; color: #1f2937; margin-bottom: 0.2rem;">Documentos Relacionados:</h3>
+                <div style="overflow-x: auto; margin-bottom: 0.2rem;">
+                    <table style="width: 100%; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 0.1rem;">
+                        <thead>
+                            <tr style="background-color: #f8f8f8; text-align: left; font-size: 0.65rem; font-weight: bold; color: #4b5563; text-transform: uppercase;">
+                                <th style="padding: 3px 6px; border-bottom: 1px solid #e2e8f0;">Nro.</th>
+                                <th style="padding: 3px 6px; border-bottom: 1px solid #e2e8f0;">Cantidad</th>
+                                <th style="padding: 3px 6px; border-bottom: 1px solid #e2e8f0;">Unidades</th>
+                                <th style="padding: 3px 6px; border-bottom: 1px solid #e2e8f0;">Medida</th>
+                                <th style="padding: 3px 6px; border-bottom: 1px solid #e2e8f0;">Descripción Detallada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${guiaGenerada.productos.map(prod => `
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 3px 6px; font-size: 0.75rem; color: #1f2937;">${prod.nro}</td>
+                                    <td style="padding: 3px 6px; font-size: 0.75rem; color: #1f2937;">${prod.cantidad}</td>
+                                    <td style="padding: 3px 6px; font-size: 0.75rem; color: #1f2937;">${prod.totalUnidadesIndividuales}</td>
+                                    <td style="padding: 3px 6px; font-size: 0.75rem; color: #1f2937;">${prod.unidad}</td>
+                                    <td style="padding: 3px 6px; font-size: 0.75rem; color: #1f2937;">${prod.descripcion}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="print-conformidad-cliente" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.1rem; margin-top: 0.5rem; font-size: 0.8rem; color: #374151;">
+                    <div>
+                        <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">Modalidad de Traslado:</span> ${guiaGenerada.modalidadTraslado}</p>
+                        <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">Dato de vehículo:</span> Placa: ${guiaGenerada.placaVehiculo}</p>
+                        <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">Datos de los conductor:</span> Nombre: ${guiaGenerada.nombreConductor}</p>
+                        <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">DNI:</span> ${guiaGenerada.dniConductor}</p>
+                        <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">Nro. de licencia de conducir:</span> ${guiaGenerada.licenciaConducir}</p>
+                    </div>
+                    <div style="text-align: left; margin-top: 0.5rem;">
+                        <p style="margin-bottom: 0.1rem;"><span style="font-weight: bold;">Conformidad del cliente:</span></p>
+                        <p style="margin-bottom: 0.1rem;"><span style="font-weight: bold;">Nombre:</span> ____________________________________</p>
+                        <p style="margin-bottom: 0.05rem;"><span style="font-weight: bold;">DNI:</span> _________________________________________</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 0.5rem; color: #4b5563; font-size: 0.7rem;">
+                    <p style="margin-bottom: 0;">Documento no válido como comprobante de pago.</p>
+                    <p style="margin-bottom: 0;">Conserve este documento. Es necesario para el control del traslado.</p>
+                </div>
+            `;
+
+            // Muestra el modal
+            document.getElementById('guiaModal').classList.remove('hidden');
+        });
+
+        // Listeners de eventos para cerrar el modal
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            document.getElementById('guiaModal').classList.add('hidden');
+        });
+        document.getElementById('closeModalBtnBottom').addEventListener('click', () => {
+            document.getElementById('guiaModal').classList.add('hidden');
+        });
+
+        // Listener de evento para hacer clic fuera del contenido del modal para cerrarlo
+        document.getElementById('guiaModal').addEventListener('click', (e) => {
+            if (e.target.id === 'guiaModal') { // Solo cierra si se hace clic en la superposición, no en el contenido del modal
+                document.getElementById('guiaModal').classList.add('hidden');
+            }
+        });
+
+        // Listener de evento para imprimir la guía
+        document.getElementById('printGuideBtn').addEventListener('click', () => {
+            const printContent = document.getElementById('guia-content').innerHTML;
+            const printWindow = window.open('', '_blank'); // Abre una nueva ventana/pestaña
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Guía de Remisión</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+                    <style>
+                        body { font-family: 'Inter', sans-serif; margin: 0; padding: 20px 40px; box-sizing: border-box; font-size: 0.8rem; } /* Relleno horizontal aumentado */
+                        table { width: 100%; border-collapse: collapse; }
+                        th, td { border: 1px solid #e2e8f0; padding: 3px 6px; text-align: left; vertical-align: top; } /* Relleno reducido */
+                        th { background-color: #f8f8f8; }
+                        .text-right { text-align: right; }
+                        .text-center { text-align: center; }
+                        .font-bold { font-weight: 700; }
+                        .text-xl { font-size: 1.25rem; }
+                        .text-sm { font-size: 0.875rem; }
+                        .text-xs { font-size: 0.75rem; }
+                        .text-gray-800 { color: #1f2937; }
+                        .text-gray-700 { color: #374151; }
+                        .text-gray-600 { color: #4b5563; }
+                        .text-red-600 { color: #dc2626; }
+                        
+                        /* Estilos específicos para el diseño similar a PDF */
+                        .flex { display: flex; }
+                        .justify-between { justify-content: space-between; }
+                        .items-start { align-items: flex-start; }
+                        .flex-grow-1 { flex-grow: 1; }
+                        .text-left { text-align: left; }
+                        .text-right { text-align: right; }
+                        .font-semibold { font-weight: 600; }
+                        .font-bolder { font-weight: bolder; }
+                        .text-2xl { font-size: 1.5rem; }
+                        .text-base { font-size: 1rem; }
+                        .text-lg { font-size: 1.125rem; }
+                        .text-xl { font-size: 1.25rem; }
+                        .text-extrabold { font-weight: 800; }
+
+                        /* Estilos de impresión personalizados para un diseño más ajustado */
+                        h2, h3 { margin-top: 0.25rem; margin-bottom: 0.1rem; } /* Márgenes reducidos */
+                        p { margin-bottom: 0.05rem; } /* Espaciado de línea aún más reducido */
+                        .section-divider { margin-bottom: 0.2rem; padding-bottom: 0.2rem; } /* Espaciado de sección reducido */
+                        .logo { height: 45px; width: auto; margin-right: 0.5rem; border-radius: 0.25rem; vertical-align: middle; } /* Logo más pequeño */
+                        .header-text { font-size: 0.8rem; } /* Tamaños de fuente ajustados */
+                        .header-title { font-size: 1rem; }
+                        .header-guide-num { font-size: 0.9rem; }
+                        .header-main-title { font-size: 1.1rem; }
+                        .table-header-font { font-size: 0.65rem; } /* Fuente de encabezado de tabla más pequeña */
+                        .table-cell-font { font-size: 0.75rem; } /* Fuente de celda de tabla más pequeña */
+                        .footer-text { font-size: 0.7rem; margin-top: 0.5rem; } /* Fuente de pie de página y margen más pequeños */
+                        
+                        /* Ajuste específico para Conformidad del cliente en la impresión */
+                        .print-conformidad-cliente {
+                            margin-top: 1rem; /* Margen superior aumentado para separación */
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${printContent}
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            // Opcional: Cierra la nueva ventana después de imprimir o con un pequeño retraso
+            // printWindow.onafterprint = function() { printWindow.close(); };
+        });
+
+        // Inicializa el formulario al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            // Establece la fecha actual como valor por defecto para fechaEmision
+            document.getElementById('fechaEmision').value = new Date().toISOString().split('T')[0];
+
+            // Rellena los selectores desplegables
+            populateSelect('remitente', mockEmpresas, 'id', ['razonSocial', 'ruc']);
+            populateSelect('destinatario', mockEmpresas, 'id', ['razonSocial', 'ruc']);
+            populateSelect('direccionPartida', mockDirecciones, 'id', ['direccionCompleta', 'distrito', 'provincia', 'departamento']);
+            populateSelect('direccionLlegada', mockDirecciones, 'id', ['direccionCompleta', 'distrito', 'provincia', 'departamento']);
+
+            // Renderiza la fila de producto inicial
+            renderProductRows();
+        });
+    </script>
+</body>
+</html>
