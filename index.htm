@@ -598,7 +598,8 @@
             printWindow.document.close();
             printWindow.focus(); // Necesario para algunos navegadores
             printWindow.print();
-            printWindow.close();
+            // No cerrar la ventana automáticamente para compatibilidad móvil
+            // printWindow.close();
         });
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -612,4 +613,3 @@
     </script>
 </body>
 </html>
-
