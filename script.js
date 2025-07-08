@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod100', category: 'CREMAS', descripcion: 'CREMA MAYONESA', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod101', category: 'CREMAS', descripcion: 'CREMA AJÍ', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod102', category: 'CREMAS', descripcion: 'CREMA VINAGRETA', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod103', category: 'CREMAS', descripcion: 'CHIMICHURRI', unidad: 'BOL', itemsPerUnit: 1.0 },
+       //** { id: 'prod103', category: 'CREMAS', descripcion: 'CHIMICHURRI', unidad: 'BOL', itemsPerUnit: 1.0 },**
             { id: 'prod104', category: 'CREMAS', descripcion: 'ACEVICHADO', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod105', category: 'CREMAS', descripcion: 'BBQ ROCOTO', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod106', category: 'CREMAS', descripcion: 'BBQ AJI LIMO', unidad: 'BOL', itemsPerUnit: 1.0 },
