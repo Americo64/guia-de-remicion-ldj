@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod5', category: 'VERDURAS', descripcion: 'PALTA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod6', category: 'VERDURAS', descripcion: 'PAPA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod7', category: 'VERDURAS', descripcion: 'PECANA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod8', category: 'VERDURAS', descripcion: 'PEPINO', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod8', category: 'VERDURAS', descripcion: 'PEPINO', unidad: 'DOC', itemsPerUnit: 1.0 },
             { id: 'prod9', category: 'VERDURAS', descripcion: 'PIMIENTO', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod10', category: 'VERDURAS', descripcion: 'PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
             { id: 'prod11', category: 'VERDURAS', descripcion: 'ROMERO', unidad: 'ATADO', itemsPerUnit: 1.0 },
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod13', category: 'VERDURAS', descripcion: 'VAINITA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod14', category: 'VERDURAS', descripcion: 'ZANAHORIA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod15', category: 'VERDURAS', descripcion: 'AJO', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod16', category: 'VERDURAS', descripcion: 'BETERRAGA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod16', category: 'VERDURAS', descripcion: 'BETERRAGA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod17', category: 'VERDURAS', descripcion: 'CEBOLLA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod18', category: 'VERDURAS', descripcion: 'CHAMPIGÑON', unidad: 'BANDEJA', itemsPerUnit: 1.0 },
             { id: 'prod19', category: 'VERDURAS', descripcion: 'CHOCLO', unidad: 'UND', itemsPerUnit: 1.0 },
@@ -200,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod176', category: 'HORNO', descripcion: 'CARBÓN', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod177', category: 'HORNO', descripcion: 'LEÑA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod178', category: 'HORNO', descripcion: 'PAPA PROCESADA', unidad: 'KG', itemsPerUnit: 1.0 },
+            { id: 'prod179', category: 'HORNO', descripcion: 'LIGAS DE POLLO X 1000', unidad: 'BOL', itemsPerUnit: 1000},
         ];
 
 
@@ -602,3 +603,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Crea y muestra la sección para productos manuales.
     renderManualProductSection();
 });
+
