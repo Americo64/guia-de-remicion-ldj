@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod5', category: 'VERDURAS', descripcion: 'PALTA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod6', category: 'VERDURAS', descripcion: 'PAPA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod7', category: 'VERDURAS', descripcion: 'PECANA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod8', category: 'VERDURAS', descripcion: 'PEPINO', unidad: 'DOC', itemsPerUnit: 1.0 },
+            { id: 'prod8', category: 'VERDURAS', descripcion: 'PEPINO', unidad: 'DOC', itemsPerUnit: 12 },
             { id: 'prod9', category: 'VERDURAS', descripcion: 'PIMIENTO', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod10', category: 'VERDURAS', descripcion: 'PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
             { id: 'prod11', category: 'VERDURAS', descripcion: 'ROMERO', unidad: 'ATADO', itemsPerUnit: 1.0 },
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod22', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA', unidad: 'ATADO', itemsPerUnit: 1.0 },
             { id: 'prod23', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA PROCESADA', unidad: 'PQT', itemsPerUnit: 1.0 },
             { id: 'prod24', category: 'VERDURAS', descripcion: 'NARANJA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod25', category: 'VERDURAS', descripcion: 'BRÓCOLI', unidad: 'UND', itemsPerUnit: 1.0 },
+            { id: 'prod25', category: 'VERDURAS', descripcion: 'BRÓCOLI', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod26', category: 'ABARROTES', descripcion: 'ACEITE MONTESOL X 18 Lt.', unidad: 'LATA', itemsPerUnit: 1.0 },
             { id: 'prod27', category: 'ABARROTES', descripcion: 'ACEITE DE OLIVA', unidad: 'BOT', itemsPerUnit: 1.0 },
             { id: 'prod28', category: 'ABARROTES', descripcion: 'ANÍS', unidad: 'CAJA', itemsPerUnit: 1.0 },
@@ -603,4 +603,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Crea y muestra la sección para productos manuales.
     renderManualProductSection();
 });
+
 
