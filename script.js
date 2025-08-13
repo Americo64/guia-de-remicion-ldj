@@ -41,12 +41,35 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod17', category: 'VERDURAS', descripcion: 'CEBOLLA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod18', category: 'VERDURAS', descripcion: 'CHAMPIGÑON', unidad: 'BANDEJA', itemsPerUnit: 1.0 },
             { id: 'prod19', category: 'VERDURAS', descripcion: 'CHOCLO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod20', category: 'VERDURAS', descripcion: 'ESPICANAS', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod20', category: 'VERDURAS', descripcion: 'ESPINACA', unidad: 'ATADO', itemsPerUnit: 1.0 },
             { id: 'prod21', category: 'VERDURAS', descripcion: 'HUEVO DE CODORNIZ', unidad: 'UND', itemsPerUnit: 1.0 },
             { id: 'prod22', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA', unidad: 'ATADO', itemsPerUnit: 1.0 },
             { id: 'prod23', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA PROCESADA', unidad: 'PQT', itemsPerUnit: 1.0 },
             { id: 'prod24', category: 'VERDURAS', descripcion: 'NARANJA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod25', category: 'VERDURAS', descripcion: 'BRÓCOLI', unidad: 'KG', itemsPerUnit: 1.0 },
+            // --- NUEVOS PRODUCTOS AÑADIDOS ---
+            { id: 'prod180', category: 'VERDURAS', descripcion: 'AJI AMARILLO', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod181', category: 'VERDURAS', descripcion: 'AJI LIMO', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod182', category: 'VERDURAS', descripcion: 'AJI PANCA', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod183', category: 'VERDURAS', descripcion: 'ALVERJA', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod184', category: 'VERDURAS', descripcion: 'CARAMBOLA', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod185', category: 'VERDURAS', descripcion: 'CEBOLLA ROJA', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod186', category: 'VERDURAS', descripcion: 'CULANTRO', unidad: 'UNIDAD', itemsPerUnit: 1.0 },
+            { id: 'prod187', category: 'VERDURAS', descripcion: 'HIERBA LUISA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod188', category: 'VERDURAS', descripcion: 'HUACATAY', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod189', category: 'VERDURAS', descripcion: 'KION', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod190', category: 'VERDURAS', descripcion: 'MAIZ MORADO', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod191', category: 'VERDURAS', descripcion: 'MANZANA AGUA', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod192', category: 'VERDURAS', descripcion: 'MARACUYA', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod193', category: 'VERDURAS', descripcion: 'MEMBRILLO', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod194', category: 'VERDURAS', descripcion: 'MENTA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod195', category: 'VERDURAS', descripcion: 'MUÑA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod196', category: 'VERDURAS', descripcion: 'OREGANO', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod197', category: 'VERDURAS', descripcion: 'PAPA YUNGAY', unidad: 'KILO', itemsPerUnit: 1.0 },
+            { id: 'prod198', category: 'VERDURAS', descripcion: 'PEREJIL', unidad: 'ATADO', itemsPerUnit: 1.0 },
+            { id: 'prod199', category: 'VERDURAS', descripcion: 'QUESO', unidad: 'UNIDAD', itemsPerUnit: 1.0 },
+            { id: 'prod200', category: 'VERDURAS', descripcion: 'WANTAN', unidad: 'KILO', itemsPerUnit: 1.0 },
+            // --- FIN DE PRODUCTOS AÑADIDOS ---
             { id: 'prod26', category: 'ABARROTES', descripcion: 'ACEITE MONTESOL X 18 Lt.', unidad: 'LATA', itemsPerUnit: 1.0 },
             { id: 'prod27', category: 'ABARROTES', descripcion: 'ACEITE DE OLIVA', unidad: 'BOT', itemsPerUnit: 1.0 },
             { id: 'prod28', category: 'ABARROTES', descripcion: 'ANÍS', unidad: 'CAJA', itemsPerUnit: 1.0 },
@@ -86,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod62', category: 'CARNES', descripcion: 'CHORIZO x 60', unidad: 'UND', itemsPerUnit: 60 },
             { id: 'prod63', category: 'CARNES', descripcion: 'COSTILLA x 15', unidad: 'UND', itemsPerUnit: 15 },
             { id: 'prod64', category: 'CARNES', descripcion: 'MORCILLA', unidad: 'UND', itemsPerUnit: 12 },
-            { id: 'prod65', category: 'CARNES', descripcion: 'PIQUEO', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod66', category: 'CARNES', descripcion: 'ALITAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+      /** { id: 'prod65', category: 'CARNES', descripcion: 'PIQUEO', unidad: 'PQT', itemsPerUnit: 1.0 },
+            { id: 'prod66', category: 'CARNES', descripcion: 'ALITAS', unidad: 'PQT', itemsPerUnit: 1.0 }, */
             { id: 'prod67', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
             { id: 'prod68', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
             { id: 'prod69', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1/2 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
@@ -124,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod100', category: 'CREMAS', descripcion: 'CREMA MAYONESA', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod101', category: 'CREMAS', descripcion: 'CREMA AJÍ', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod102', category: 'CREMAS', descripcion: 'CREMA VINAGRETA', unidad: 'BOL', itemsPerUnit: 1.0 },
-       //** { id: 'prod103', category: 'CREMAS', descripcion: 'CHIMICHURRI', unidad: 'BOL', itemsPerUnit: 1.0 },**
+            { id: 'prod103', category: 'CREMAS', descripcion: 'CHIMICHURRI', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod104', category: 'CREMAS', descripcion: 'ACEVICHADO', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod105', category: 'CREMAS', descripcion: 'BBQ ROCOTO', unidad: 'BOL', itemsPerUnit: 1.0 },
             { id: 'prod106', category: 'CREMAS', descripcion: 'BBQ AJI LIMO', unidad: 'BOL', itemsPerUnit: 1.0 },
@@ -200,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod176', category: 'HORNO', descripcion: 'CARBÓN', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod177', category: 'HORNO', descripcion: 'LEÑA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod178', category: 'HORNO', descripcion: 'PAPA PROCESADA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod179', category: 'HORNO', descripcion: 'LIGAS DE POLLO X 1000', unidad: 'BOL', itemsPerUnit: 1000},
+            { id: 'prod179', category: 'HORNO', descripcion: 'LIGAS DE POLLO X 1000', unidad: 'BOL', itemsPerUnit: 1000 },
         ];
 
 
@@ -304,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 productRow.innerHTML = `
                     <div>${prod.descripcion}</div>
                     <div>${prod.unidad}</div>
-                    <div><input type="number" data-product-id="${prod.id}" min="0" value="0" class="product-quantity"></div>
+                    <div><input type="number" data-product-id="${prod.id}" min="0" step="any" value="0" class="product-quantity"></div>
                 `;
                 productListDiv.appendChild(productRow);
             });
@@ -323,8 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="product-list expanded">
                 <div id="manual-rows-container">
-                    <!-- Las filas manuales se añadirán aquí -->
-                </div>
+                    </div>
                 <button type="button" id="add-manual-product-btn">Añadir Producto</button>
             </div>
         `;
@@ -342,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
         row.innerHTML = `
             <input type="text" placeholder="Descripción del producto" class="manual-descripcion">
             <input type="text" placeholder="Unidad (ej. KG, UND)" class="manual-unidad">
-            <input type="number" placeholder="Cantidad" min="0" class="manual-cantidad">
+            <input type="number" placeholder="Cantidad" min="0" step="any" class="manual-cantidad">
             <button type="button" class="remove-manual-row-btn" ${isFirst ? 'style="display:none;"' : ''}>-</button>
         `;
         container.appendChild(row);
@@ -395,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Recopilar productos predefinidos
         document.querySelectorAll('.product-quantity').forEach(input => {
-            const cantidad = parseInt(input.value, 10);
+            const cantidad = parseFloat(input.value);
             if (cantidad > 0) {
                 const productId = input.dataset.productId;
                 const productDetail = mockProductos.find(p => p.id === productId);
@@ -415,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.manual-product-row').forEach(row => {
             const descripcion = row.querySelector('.manual-descripcion').value.trim();
             const unidad = row.querySelector('.manual-unidad').value.trim();
-            const cantidad = parseInt(row.querySelector('.manual-cantidad').value, 10);
+            const cantidad = parseFloat(row.querySelector('.manual-cantidad').value);
 
             if (descripcion && unidad && cantidad > 0) {
                 productsWithDetails.push({
@@ -603,5 +625,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Crea y muestra la sección para productos manuales.
     renderManualProductSection();
 });
-
-
