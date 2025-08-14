@@ -19,210 +19,209 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * @const {Array<Object>} mockProductos
-     * Contiene el catálogo completo de productos, cada uno con su categoría, descripción, unidad, etc.
+     * Contiene el catálogo completo de productos. La numeración ha sido corregida.
      */
-      const mockProductos = [
-            { id: 'prod1', category: 'VERDURAS', descripcion: 'LECHUGA AMERICANA', unidad: 'DOC', itemsPerUnit: 12.0 },
-            { id: 'prod2', category: 'VERDURAS', descripcion: 'LECHUGA CRESPA', unidad: 'DOC', itemsPerUnit: 12.0 },
-            { id: 'prod3', category: 'VERDURAS', descripcion: 'LIMON', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod4', category: 'VERDURAS', descripcion: 'MANZANA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod5', category: 'VERDURAS', descripcion: 'PALTA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod6', category: 'VERDURAS', descripcion: 'PAPA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod7', category: 'VERDURAS', descripcion: 'PECANA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod8', category: 'VERDURAS', descripcion: 'PEPINO', unidad: 'DOC', itemsPerUnit: 12 },
-            { id: 'prod9', category: 'VERDURAS', descripcion: 'PIMIENTO', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod10', category: 'VERDURAS', descripcion: 'PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod11', category: 'VERDURAS', descripcion: 'ROMERO', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod12', category: 'VERDURAS', descripcion: 'TOMATE', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod13', category: 'VERDURAS', descripcion: 'VAINITA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod14', category: 'VERDURAS', descripcion: 'ZANAHORIA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod15', category: 'VERDURAS', descripcion: 'AJO', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod16', category: 'VERDURAS', descripcion: 'BETERRAGA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod17', category: 'VERDURAS', descripcion: 'CEBOLLA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod18', category: 'VERDURAS', descripcion: 'CHAMPIGÑON', unidad: 'BANDEJA', itemsPerUnit: 1.0 },
-            { id: 'prod19', category: 'VERDURAS', descripcion: 'CHOCLO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod20', category: 'VERDURAS', descripcion: 'ESPINACA', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod21', category: 'VERDURAS', descripcion: 'HUEVO DE CODORNIZ', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod22', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod23', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA PROCESADA', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod24', category: 'VERDURAS', descripcion: 'NARANJA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod25', category: 'VERDURAS', descripcion: 'BRÓCOLI', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod180', category: 'VERDURAS', descripcion: 'AJI AMARILLO', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod181', category: 'VERDURAS', descripcion: 'AJI LIMO', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod182', category: 'VERDURAS', descripcion: 'AJI PANCA', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod183', category: 'VERDURAS', descripcion: 'ALVERJA', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod184', category: 'VERDURAS', descripcion: 'CARAMBOLA', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod185', category: 'VERDURAS', descripcion: 'CEBOLLA ROJA', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod186', category: 'VERDURAS', descripcion: 'CULANTRO', unidad: 'UNIDAD', itemsPerUnit: 1.0 },
-            { id: 'prod187', category: 'VERDURAS', descripcion: 'HIERBA LUISA', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod188', category: 'VERDURAS', descripcion: 'HUACATAY', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod189', category: 'VERDURAS', descripcion: 'KION', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod190', category: 'VERDURAS', descripcion: 'MAIZ MORADO', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod191', category: 'VERDURAS', descripcion: 'MANZANA AGUA', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod192', category: 'VERDURAS', descripcion: 'MARACUYA', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod193', category: 'VERDURAS', descripcion: 'MEMBRILLO', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod194', category: 'VERDURAS', descripcion: 'MENTA', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod195', category: 'VERDURAS', descripcion: 'MUÑA', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod196', category: 'VERDURAS', descripcion: 'OREGANO', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod197', category: 'VERDURAS', descripcion: 'PAPA YUNGAY', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod198', category: 'VERDURAS', descripcion: 'PEREJIL', unidad: 'ATADO', itemsPerUnit: 1.0 },
-            { id: 'prod199', category: 'VERDURAS', descripcion: 'QUESO', unidad: 'UNIDAD', itemsPerUnit: 1.0 },
-            { id: 'prod200', category: 'VERDURAS', descripcion: 'WANTAN', unidad: 'KILO', itemsPerUnit: 1.0 },
-            { id: 'prod26', category: 'ABARROTES', descripcion: 'ACEITE MONTESOL X 18 Lt.', unidad: 'LATA', itemsPerUnit: 1.0 },
-            { id: 'prod27', category: 'ABARROTES', descripcion: 'ACEITE DE OLIVA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod28', category: 'ABARROTES', descripcion: 'ANÍS', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod29', category: 'ABARROTES', descripcion: 'ARROZ', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod30', category: 'ABARROTES', descripcion: 'AZÚCAR SACHET', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod31', category: 'ABARROTES', descripcion: 'AZÚCAR BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod32', category: 'ABARROTES', descripcion: 'AZÚCAR RUBIA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod33', category: 'ABARROTES', descripcion: 'CAFÉ GRANEL', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod34', category: 'ABARROTES', descripcion: 'GUANTES DE CUERO', unidad: 'PAR', itemsPerUnit: 2.0 },
-            { id: 'prod35', category: 'ABARROTES', descripcion: 'KETCHUP GRANEL', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod36', category: 'ABARROTES', descripcion: 'KETCHUP SACHET', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod37', category: 'ABARROTES', descripcion: 'LECHE EVAPORADA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod38', category: 'ABARROTES', descripcion: 'MANZANILLA', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod39', category: 'ABARROTES', descripcion: 'MOSTAZA GRANEL', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod40', category: 'ABARROTES', descripcion: 'MOSTAZA SACHET', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod41', category: 'ABARROTES', descripcion: 'PIÑA EN CONSERVA', unidad: 'LATA', itemsPerUnit: 1.0 },
-            { id: 'prod42', category: 'ABARROTES', descripcion: 'SAL', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod43', category: 'ABARROTES', descripcion: 'SALSA BBQ', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod44', category: 'ABARROTES', descripcion: 'TÉ', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod45', category: 'ABARROTES', descripcion: 'PIMIENTA NEGRA', unidad: 'FRASCO', itemsPerUnit: 1.0 },
-            { id: 'prod46', category: 'ABARROTES', descripcion: 'SERVILLETAS', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod47', category: 'ABARROTES', descripcion: 'SODA CAUSTICA ESCAMAS', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod48', category: 'ABARROTES', descripcion: 'SORBETE ESPECIAL PLANCHA', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod49', category: 'ABARROTES', descripcion: 'PAPEL MANTECA', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod50', category: 'ABARROTES', descripcion: 'LIGAS DE POLLO', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod51', category: 'ABARROTES', descripcion: 'LIGAS', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod52', category: 'ABARROTES', descripcion: 'HUEVO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod53', category: 'ABARROTES', descripcion: 'ACEITE DE AJONJOLI', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod54', category: 'CARNES', descripcion: 'FILETE DE PECHUGA x 30', unidad: 'UND', itemsPerUnit: 30 },
-            { id: 'prod55', category: 'CARNES', descripcion: 'MOLLEJA DE POLLO x 25', unidad: 'PORC', itemsPerUnit: 25 },
-            { id: 'prod56', category: 'CARNES', descripcion: 'LOMO X 200 GR x 20', unidad: 'UND', itemsPerUnit: 20},
-            { id: 'prod57', category: 'CARNES', descripcion: 'CHULETA x 20', unidad: 'UND', itemsPerUnit: 20 },
-            { id: 'prod58', category: 'CARNES', descripcion: 'RACHI x 20', unidad: 'PORC', itemsPerUnit: 20 },
-            { id: 'prod59', category: 'CARNES', descripcion: 'ANTICUCHO x 40', unidad: 'PAL', itemsPerUnit: 40 },
-            { id: 'prod60', category: 'CARNES', descripcion: 'BIFE x 20', unidad: 'UND', itemsPerUnit: 20 },
-            { id: 'prod61', category: 'CARNES', descripcion: 'CHURRASCO x 15', unidad: 'UND', itemsPerUnit: 15 },
-            { id: 'prod62', category: 'CARNES', descripcion: 'CHORIZO x 60', unidad: 'UND', itemsPerUnit: 60 },
-            { id: 'prod63', category: 'CARNES', descripcion: 'COSTILLA x 15', unidad: 'UND', itemsPerUnit: 15 },
-            { id: 'prod64', category: 'CARNES', descripcion: 'MORCILLA', unidad: 'UND', itemsPerUnit: 12 },
-      /** { id: 'prod65', category: 'CARNES', descripcion: 'PIQUEO', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod66', category: 'CARNES', descripcion: 'ALITAS', unidad: 'PQT', itemsPerUnit: 1.0 }, */
-            { id: 'prod67', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod68', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod69', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1/2 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod70', category: 'BEBIDAS', descripcion: 'GASEOSA COCA COLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod71', category: 'BEBIDAS', descripcion: 'GASEOSA COCA COLA DE 1 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod72', category: 'BEBIDAS', descripcion: 'GASEOSA COCA COLA DE 1/2 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod73', category: 'BEBIDAS', descripcion: 'CERCEZA PILSEN', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod74', category: 'BEBIDAS', descripcion: 'CERCEZA CUSQUEÑA NEGRA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod75', category: 'BEBIDAS', descripcion: 'CERCEZA CUSQUEÑA DORADA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod76', category: 'BEBIDAS', descripcion: 'CERCEZA CUSQUEÑA TRIGO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod77', category: 'BEBIDAS', descripcion: 'AGUA MINERAL 3 LITROS', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod78', category: 'BEBIDAS', descripcion: 'AGUA SAN LUIS CON GAS 600 ML', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod79', category: 'BEBIDAS', descripcion: 'AGUA SAN LUIS SIN GAS 600 ML', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod80', category: 'LICORES', descripcion: 'ALGARROBINA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod81', category: 'LICORES', descripcion: 'AMARGO DE ANGOSTURA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod82', category: 'LICORES', descripcion: 'CREMA DE COCO', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod83', category: 'LICORES', descripcion: 'CREMA DE MENTA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod84', category: 'LICORES', descripcion: 'EVERVESS', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod85', category: 'LICORES', descripcion: 'JARABE DE GOMA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod86', category: 'LICORES', descripcion: 'JARABE DE GRANDINA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod87', category: 'LICORES', descripcion: 'JUGO DE PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod88', category: 'LICORES', descripcion: 'JUGO DE NARANJA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod89', category: 'LICORES', descripcion: 'LICOR DE CACAO', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod90', category: 'LICORES', descripcion: 'MARRASQUINO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod91', category: 'LICORES', descripcion: 'PISCO', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod92', category: 'LICORES', descripcion: 'RON BLANCO', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod93', category: 'LICORES', descripcion: 'RON RUBIO', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod94', category: 'LICORES', descripcion: 'VINO BORGOÑA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod95', category: 'LICORES', descripcion: 'VINO MAGDALENA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod96', category: 'LICORES', descripcion: 'VINO PEDRAS NEGRAS', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod97', category: 'LICORES', descripcion: 'VINO ROSÉ', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod98', category: 'LICORES', descripcion: 'VINO INTIKALPA', unidad: 'BOT', itemsPerUnit: 1.0 },
-            { id: 'prod99', category: 'LICORES', descripcion: 'VINO BLANCO (gato negro)', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod100', category: 'CREMAS', descripcion: 'CREMA MAYONESA', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod101', category: 'CREMAS', descripcion: 'CREMA AJÍ', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod102', category: 'CREMAS', descripcion: 'CREMA VINAGRETA', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod103', category: 'CREMAS', descripcion: 'CHIMICHURRI', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod104', category: 'CREMAS', descripcion: 'ACEVICHADO', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod105', category: 'CREMAS', descripcion: 'BBQ ROCOTO', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod106', category: 'CREMAS', descripcion: 'BBQ AJI LIMO', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod107', category: 'CREMAS', descripcion: 'BBQ LJD', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod108', category: 'CREMAS', descripcion: 'CHIMUCHIRI x 2', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod109', category: 'CREMAS', descripcion: 'SALSA ANTICUCHERA X 1', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod110', category: 'CREMAS', descripcion: 'SAL PREPARADA X 2', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod111', category: 'CREMAS', descripcion: 'ADEREZO PARRILLA 1', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod112', category: 'CREMAS', descripcion: 'SALSA DE OREGANO X 250', unidad: 'GR', itemsPerUnit: 1.0 },
-            { id: 'prod113', category: 'CREMAS', descripcion: 'AHUMADO PARA CHAUFA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod114', category: 'CREMAS', descripcion: 'TEQUEÑOS', unidad: 'PORC', itemsPerUnit: 1.0 },
-            { id: 'prod115', category: 'CREMAS', descripcion: 'ARRROZ CHAUFA', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod116', category: 'CREMAS', descripcion: 'ALITAS', unidad: 'PORC', itemsPerUnit: 1.0 },
-            { id: 'prod117', category: 'LIMPIEZA', descripcion: 'DETERGENTE', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod118', category: 'LIMPIEZA', descripcion: 'ESCOBA DE MADERA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod119', category: 'LIMPIEZA', descripcion: 'ESCOBA DE PARRILLA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod120', category: 'LIMPIEZA', descripcion: 'ESCOBA DE PLÁSTICO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod121', category: 'LIMPIEZA', descripcion: 'ESPONJA DUO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod122', category: 'LIMPIEZA', descripcion: 'ESPONJA MÁQUINA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod123', category: 'LIMPIEZA', descripcion: 'ESPONJA VERDE', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod124', category: 'LIMPIEZA', descripcion: 'JALADOR', unidad: 'GL', itemsPerUnit: 1.0 },
-            { id: 'prod125', category: 'LIMPIEZA', descripcion: 'LIMPIAVIDRIOS', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod126', category: 'LIMPIEZA', descripcion: 'MATAMOSCAS', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod127', category: 'LIMPIEZA', descripcion: 'RECOGEDOR', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod128', category: 'LIMPIEZA', descripcion: 'SECADORES', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod129', category: 'LIMPIEZA', descripcion: 'TOALLA DE MANO', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod130', category: 'LIMPIEZA', descripcion: 'TRAPEADOR', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod131', category: 'DESCARTABLE', descripcion: 'ENVACE AJICEROS X 2400 UNID', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod132', category: 'DESCARTABLE', descripcion: 'TAPA AJICEROS X 2400 UNID', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod133', category: 'DESCARTABLE', descripcion: 'PALITOS DE BROCHETAS', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod134', category: 'DESCARTABLE', descripcion: 'BOLSAS 12X16', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod135', category: 'DESCARTABLE', descripcion: 'BOLSAS 16X19', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod136', category: 'DESCARTABLE', descripcion: 'BOLSAS 19X20', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod137', category: 'DESCARTABLE', descripcion: 'BOLSAS 20X30', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod138', category: 'DESCARTABLE', descripcion: 'BOLSAS 220 LT', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod139', category: 'DESCARTABLE', descripcion: 'BOLSAS 8X12', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod140', category: 'DESCARTABLE', descripcion: 'BOLSAS 50 LT', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod141', category: 'DESCARTABLE', descripcion: 'TAPER ENSALADA DE POLLO', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod142', category: 'DESCARTABLE', descripcion: 'TAPER ENSALADA DE MEDIO', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod143', category: 'DESCARTABLE', descripcion: 'CUCHARITAS', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod144', category: 'DESCARTABLE', descripcion: 'GORROS DESCARTABLES', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod145', category: 'DESCARTABLE', descripcion: 'GUANTES QUIRURGICOS', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod146', category: 'DESCARTABLE', descripcion: 'LIGAS DE DESPACHO', unidad: 'CAJA', itemsPerUnit: 1.0 },
-            { id: 'prod147', category: 'DESCARTABLE', descripcion: 'MONDADIENTES', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod148', category: 'DESCARTABLE', descripcion: 'REMOVEDORES', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod149', category: 'DESCARTABLE', descripcion: 'SERVILLETAS DOBLADAS', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod150', category: 'DESCARTABLE', descripcion: 'SORBETES X 50 BLANCOS', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod151', category: 'DESCARTABLE', descripcion: 'SORBETES NEGROS', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod152', category: 'DESCARTABLE', descripcion: 'VASOS DESCARTABLES', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod153', category: 'DESCARTABLE', descripcion: 'TENEDORES DESCATRTABLES', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod154', category: 'DESCARTABLE', descripcion: 'PLATOS DESCARTABLES GRANDES', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod155', category: 'DESCARTABLE', descripcion: 'PLATOS DESCARTABLES CHICOS', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod156', category: 'DESCARTABLE', descripcion: 'TAPER 500 ML', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod157', category: 'DESCARTABLE', descripcion: 'POLIGRASA', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod158', category: 'DESCARTABLE', descripcion: 'ENVASE POLLERO', unidad: 'PQT', itemsPerUnit: 1.0 },
-            { id: 'prod159', category: 'DESCARTABLE', descripcion: 'CUCHILLO DESCARTABLE', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod160', category: 'POSTRE', descripcion: 'TRES LECHES', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod161', category: 'POSTRE', descripcion: 'MOUSE DE CHOCOLATE', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod162', category: 'POSTRE', descripcion: 'DERRUMBADO DE LÚCUMA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod163', category: 'POSTRE', descripcion: 'DERRUMBADO DE FRUTOS ROJOS', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod164', category: 'POSTRE', descripcion: 'CREMAS VOLTEADA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod165', category: 'POSTRE', descripcion: 'TORTA DE CHOCOLATE', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod166', category: 'POSTRE', descripcion: 'POSTRES CUMPLEAÑOS', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod167', category: 'BEBIDAS NATURALES', descripcion: 'CHICHA MORADA', unidad: 'BAL', itemsPerUnit: 1.0 },
-            { id: 'prod168', category: 'BEBIDAS NATURALES', descripcion: 'MARACUYÁ', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod169', category: 'BEBIDAS NATURALES', descripcion: 'DESHIDRATADO DE LIMON', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod170', category: 'BEBIDAS NATURALES', descripcion: 'DESHIDRATADO DE NARANJA', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod171', category: 'BEBIDAS NATURALES', descripcion: 'DESHIDRATADO DE PIÑA', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod172', category: 'BEBIDAS NATURALES', descripcion: 'ARANDANO CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod173', category: 'BEBIDAS NATURALES', descripcion: 'PIÑA CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod174', category: 'BEBIDAS NATURALES', descripcion: 'FRESA CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
-            { id: 'prod175', category: 'HORNO', descripcion: 'POLLO A LA BRASA', unidad: 'UND', itemsPerUnit: 1.0 },
-            { id: 'prod176', category: 'HORNO', descripcion: 'CARBÓN', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod177', category: 'HORNO', descripcion: 'LEÑA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod178', category: 'HORNO', descripcion: 'PAPA PROCESADA', unidad: 'KG', itemsPerUnit: 1.0 },
-            { id: 'prod179', category: 'HORNO', descripcion: 'LIGAS DE POLLO X 1000', unidad: 'BOL', itemsPerUnit: 1000 },
-        ];
+    let mockProductos = [
+        // La numeración de ID será corregida automáticamente por el script.
+        { id: 'prod1', category: 'VERDURAS', descripcion: 'LECHUGA AMERICANA', unidad: 'DOC', itemsPerUnit: 12.0 },
+        { id: 'prod2', category: 'VERDURAS', descripcion: 'LECHUGA CRESPA', unidad: 'DOC', itemsPerUnit: 12.0 },
+        { id: 'prod3', category: 'VERDURAS', descripcion: 'LIMON', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod4', category: 'VERDURAS', descripcion: 'MANZANA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod5', category: 'VERDURAS', descripcion: 'PALTA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod6', category: 'VERDURAS', descripcion: 'PAPA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod7', category: 'VERDURAS', descripcion: 'PECANA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod8', category: 'VERDURAS', descripcion: 'PEPINO', unidad: 'DOC', itemsPerUnit: 12 },
+        { id: 'prod9', category: 'VERDURAS', descripcion: 'PIMIENTO', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod10', category: 'VERDURAS', descripcion: 'PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod11', category: 'VERDURAS', descripcion: 'ROMERO', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod12', category: 'VERDURAS', descripcion: 'TOMATE', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod13', category: 'VERDURAS', descripcion: 'VAINITA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod14', category: 'VERDURAS', descripcion: 'ZANAHORIA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod15', category: 'VERDURAS', descripcion: 'AJO', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod16', category: 'VERDURAS', descripcion: 'BETERRAGA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod17', category: 'VERDURAS', descripcion: 'CEBOLLA BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod18', category: 'VERDURAS', descripcion: 'CHAMPIGÑON', unidad: 'BANDEJA', itemsPerUnit: 1.0 },
+        { id: 'prod19', category: 'VERDURAS', descripcion: 'CHOCLO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod20', category: 'VERDURAS', descripcion: 'ESPINACA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod21', category: 'VERDURAS', descripcion: 'HUEVO DE CODORNIZ', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod22', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod23', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA PROCESADA', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod24', category: 'VERDURAS', descripcion: 'NARANJA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod25', category: 'VERDURAS', descripcion: 'BRÓCOLI', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod26', category: 'VERDURAS', descripcion: 'AJI AMARILLO', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod27', category: 'VERDURAS', descripcion: 'AJI LIMO', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod28', category: 'VERDURAS', descripcion: 'AJI PANCA', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod29', category: 'VERDURAS', descripcion: 'ALVERJA', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod30', category: 'VERDURAS', descripcion: 'CARAMBOLA', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod31', category: 'VERDURAS', descripcion: 'CEBOLLA ROJA', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod32', category: 'VERDURAS', descripcion: 'CULANTRO', unidad: 'UNIDAD', itemsPerUnit: 1.0 },
+        { id: 'prod33', category: 'VERDURAS', descripcion: 'HIERBA LUISA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod34', category: 'VERDURAS', descripcion: 'HUACATAY', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod35', category: 'VERDURAS', descripcion: 'KION', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod36', category: 'VERDURAS', descripcion: 'MAIZ MORADO', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod37', category: 'VERDURAS', descripcion: 'MANZANA AGUA', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod38', category: 'VERDURAS', descripcion: 'MARACUYA', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod39', category: 'VERDURAS', descripcion: 'MEMBRILLO', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod40', category: 'VERDURAS', descripcion: 'MENTA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod41', category: 'VERDURAS', descripcion: 'MUÑA', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod42', category: 'VERDURAS', descripcion: 'OREGANO', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod43', category: 'VERDURAS', descripcion: 'PAPA YUNGAY', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod44', category: 'VERDURAS', descripcion: 'PEREJIL', unidad: 'ATADO', itemsPerUnit: 1.0 },
+        { id: 'prod45', category: 'VERDURAS', descripcion: 'QUESO', unidad: 'UNIDAD', itemsPerUnit: 1.0 },
+        { id: 'prod46', category: 'VERDURAS', descripcion: 'WANTAN', unidad: 'KILO', itemsPerUnit: 1.0 },
+        { id: 'prod47', category: 'ABARROTES', descripcion: 'ACEITE MONTESOL X 18 Lt.', unidad: 'LATA', itemsPerUnit: 1.0 },
+        { id: 'prod48', category: 'ABARROTES', descripcion: 'ACEITE DE OLIVA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod49', category: 'ABARROTES', descripcion: 'ANÍS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod50', category: 'ABARROTES', descripcion: 'ARROZ', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod51', category: 'ABARROTES', descripcion: 'AZÚCAR SACHET', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod52', category: 'ABARROTES', descripcion: 'AZÚCAR BLANCA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod53', category: 'ABARROTES', descripcion: 'AZÚCAR RUBIA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod54', category: 'ABARROTES', descripcion: 'CAFÉ GRANEL', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod55', category: 'ABARROTES', descripcion: 'GUANTES DE CUERO', unidad: 'PAR', itemsPerUnit: 2.0 },
+        { id: 'prod56', category: 'ABARROTES', descripcion: 'KETCHUP GRANEL', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod57', category: 'ABARROTES', descripcion: 'KETCHUP SACHET', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod58', category: 'ABARROTES', descripcion: 'LECHE EVAPORADA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod59', category: 'ABARROTES', descripcion: 'MANZANILLA', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod60', category: 'ABARROTES', descripcion: 'MOSTAZA GRANEL', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod61', category: 'ABARROTES', descripcion: 'MOSTAZA SACHET', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod62', category: 'ABARROTES', descripcion: 'PIÑA EN CONSERVA', unidad: 'LATA', itemsPerUnit: 1.0 },
+        { id: 'prod63', category: 'ABARROTES', descripcion: 'SAL', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod64', category: 'ABARROTES', descripcion: 'SALSA BBQ', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod65', category: 'ABARROTES', descripcion: 'TÉ', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod66', category: 'ABARROTES', descripcion: 'PIMIENTA NEGRA', unidad: 'FRASCO', itemsPerUnit: 1.0 },
+        { id: 'prod67', category: 'ABARROTES', descripcion: 'SERVILLETAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod68', category: 'ABARROTES', descripcion: 'SODA CAUSTICA ESCAMAS', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod69', category: 'ABARROTES', descripcion: 'SORBETE ESPECIAL PLANCHA', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod70', category: 'ABARROTES', descripcion: 'PAPEL MANTECA', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod71', category: 'ABARROTES', descripcion: 'LIGAS DE POLLO', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod72', category: 'ABARROTES', descripcion: 'LIGAS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod73', category: 'ABARROTES', descripcion: 'HUEVO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod74', category: 'ABARROTES', descripcion: 'ACEITE DE AJONJOLI', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod75', category: 'CARNES', descripcion: 'FILETE DE PECHUGA x 30', unidad: 'UND', itemsPerUnit: 30 },
+        { id: 'prod76', category: 'CARNES', descripcion: 'MOLLEJA DE POLLO x 25', unidad: 'PORC', itemsPerUnit: 25 },
+        { id: 'prod77', category: 'CARNES', descripcion: 'LOMO X 200 GR x 20', unidad: 'UND', itemsPerUnit: 20},
+        { id: 'prod78', category: 'CARNES', descripcion: 'CHULETA x 20', unidad: 'UND', itemsPerUnit: 20 },
+        { id: 'prod79', category: 'CARNES', descripcion: 'RACHI x 20', unidad: 'PORC', itemsPerUnit: 20 },
+        { id: 'prod80', category: 'CARNES', descripcion: 'ANTICUCHO x 40', unidad: 'PAL', itemsPerUnit: 40 },
+        { id: 'prod81', category: 'CARNES', descripcion: 'BIFE x 20', unidad: 'UND', itemsPerUnit: 20 },
+        { id: 'prod82', category: 'CARNES', descripcion: 'CHURRASCO x 15', unidad: 'UND', itemsPerUnit: 15 },
+        { id: 'prod83', category: 'CARNES', descripcion: 'CHORIZO x 60', unidad: 'UND', itemsPerUnit: 60 },
+        { id: 'prod84', category: 'CARNES', descripcion: 'COSTILLA x 15', unidad: 'UND', itemsPerUnit: 15 },
+        { id: 'prod85', category: 'CARNES', descripcion: 'MORCILLA', unidad: 'UND', itemsPerUnit: 12 },
+        { id: 'prod86', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod87', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod88', category: 'BEBIDAS', descripcion: 'GASEOSA INCA KOLA DE 1/2 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod89', category: 'BEBIDAS', descripcion: 'GASEOSA COCA COLA DE 1.5 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod90', category: 'BEBIDAS', descripcion: 'GASEOSA COCA COLA DE 1 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod91', category: 'BEBIDAS', descripcion: 'GASEOSA COCA COLA DE 1/2 LITRO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod92', category: 'BEBIDAS', descripcion: 'CERVEZA PILSEN', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod93', category: 'BEBIDAS', descripcion: 'CERVEZA CUSQUEÑA NEGRA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod94', category: 'BEBIDAS', descripcion: 'CERVEZA CUSQUEÑA DORADA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod95', category: 'BEBIDAS', descripcion: 'CERVEZA CUSQUEÑA TRIGO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod96', category: 'BEBIDAS', descripcion: 'AGUA MINERAL 3 LITROS', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod97', category: 'BEBIDAS', descripcion: 'AGUA SAN LUIS CON GAS 600 ML', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod98', category: 'BEBIDAS', descripcion: 'AGUA SAN LUIS SIN GAS 600 ML', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod99', category: 'LICORES', descripcion: 'ALGARROBINA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod100', category: 'LICORES', descripcion: 'AMARGO DE ANGOSTURA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod101', category: 'LICORES', descripcion: 'CREMA DE COCO', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod102', category: 'LICORES', descripcion: 'CREMA DE MENTA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod103', category: 'LICORES', descripcion: 'EVERVESS', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod104', category: 'LICORES', descripcion: 'JARABE DE GOMA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod105', category: 'LICORES', descripcion: 'JARABE DE GRANDINA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod106', category: 'LICORES', descripcion: 'JUGO DE PIÑA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod107', category: 'LICORES', descripcion: 'JUGO DE NARANJA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod108', category: 'LICORES', descripcion: 'LICOR DE CACAO', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod109', category: 'LICORES', descripcion: 'MARRASQUINO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod110', category: 'LICORES', descripcion: 'PISCO', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod111', category: 'LICORES', descripcion: 'RON BLANCO', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod112', category: 'LICORES', descripcion: 'RON RUBIO', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod113', category: 'LICORES', descripcion: 'VINO BORGOÑA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod114', category: 'LICORES', descripcion: 'VINO MAGDALENA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod115', category: 'LICORES', descripcion: 'VINO PEDRAS NEGRAS', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod116', category: 'LICORES', descripcion: 'VINO ROSÉ', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod117', category: 'LICORES', descripcion: 'VINO INTIKALPA', unidad: 'BOT', itemsPerUnit: 1.0 },
+        { id: 'prod118', category: 'LICORES', descripcion: 'VINO BLANCO (gato negro)', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod119', category: 'CREMAS', descripcion: 'CREMA MAYONESA', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod120', category: 'CREMAS', descripcion: 'CREMA AJÍ', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod121', category: 'CREMAS', descripcion: 'CREMA VINAGRETA', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod122', category: 'CREMAS', descripcion: 'CHIMICHURRI', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod123', category: 'CREMAS', descripcion: 'ACEVICHADO', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod124', category: 'CREMAS', descripcion: 'BBQ ROCOTO', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod125', category: 'CREMAS', descripcion: 'BBQ AJI LIMO', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod126', category: 'CREMAS', descripcion: 'BBQ LJD', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod127', category: 'CREMAS', descripcion: 'CHIMUCHIRI x 2', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod128', category: 'CREMAS', descripcion: 'SALSA ANTICUCHERA X 1', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod129', category: 'CREMAS', descripcion: 'SAL PREPARADA X 2', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod130', category: 'CREMAS', descripcion: 'ADEREZO PARRILLA 1', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod131', category: 'CREMAS', descripcion: 'SALSA DE OREGANO X 250', unidad: 'GR', itemsPerUnit: 1.0 },
+        { id: 'prod132', category: 'CREMAS', descripcion: 'AHUMADO PARA CHAUFA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod133', category: 'CREMAS', descripcion: 'TEQUEÑOS', unidad: 'PORC', itemsPerUnit: 1.0 },
+        { id: 'prod134', category: 'CREMAS', descripcion: 'ARRROZ CHAUFA', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod135', category: 'CREMAS', descripcion: 'ALITAS', unidad: 'PORC', itemsPerUnit: 1.0 },
+        { id: 'prod136', category: 'LIMPIEZA', descripcion: 'DETERGENTE', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod137', category: 'LIMPIEZA', descripcion: 'ESCOBA DE MADERA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod138', category: 'LIMPIEZA', descripcion: 'ESCOBA DE PARRILLA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod139', category: 'LIMPIEZA', descripcion: 'ESCOBA DE PLÁSTICO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod140', category: 'LIMPIEZA', descripcion: 'ESPONJA DUO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod141', category: 'LIMPIEZA', descripcion: 'ESPONJA MÁQUINA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod142', category: 'LIMPIEZA', descripcion: 'ESPONJA VERDE', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod143', category: 'LIMPIEZA', descripcion: 'JALADOR', unidad: 'GL', itemsPerUnit: 1.0 },
+        { id: 'prod144', category: 'LIMPIEZA', descripcion: 'LIMPIAVIDRIOS', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod145', category: 'LIMPIEZA', descripcion: 'MATAMOSCAS', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod146', category: 'LIMPIEZA', descripcion: 'RECOGEDOR', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod147', category: 'LIMPIEZA', descripcion: 'SECADORES', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod148', category: 'LIMPIEZA', descripcion: 'TOALLA DE MANO', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod149', category: 'LIMPIEZA', descripcion: 'TRAPEADOR', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod150', category: 'DESCARTABLE', descripcion: 'ENVACE AJICEROS X 2400 UNID', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod151', category: 'DESCARTABLE', descripcion: 'TAPA AJICEROS X 2400 UNID', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod152', category: 'DESCARTABLE', descripcion: 'PALITOS DE BROCHETAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod153', category: 'DESCARTABLE', descripcion: 'BOLSAS 12X16', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod154', category: 'DESCARTABLE', descripcion: 'BOLSAS 16X19', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod155', category: 'DESCARTABLE', descripcion: 'BOLSAS 19X20', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod156', category: 'DESCARTABLE', descripcion: 'BOLSAS 20X30', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod157', category: 'DESCARTABLE', descripcion: 'BOLSAS 220 LT', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod158', category: 'DESCARTABLE', descripcion: 'BOLSAS 8X12', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod159', category: 'DESCARTABLE', descripcion: 'BOLSAS 50 LT', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod160', category: 'DESCARTABLE', descripcion: 'TAPER ENSALADA DE POLLO', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod161', category: 'DESCARTABLE', descripcion: 'TAPER ENSALADA DE MEDIO', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod162', category: 'DESCARTABLE', descripcion: 'CUCHARITAS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod163', category: 'DESCARTABLE', descripcion: 'GORROS DESCARTABLES', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod164', category: 'DESCARTABLE', descripcion: 'GUANTES QUIRURGICOS', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod165', category: 'DESCARTABLE', descripcion: 'LIGAS DE DESPACHO', unidad: 'CAJA', itemsPerUnit: 1.0 },
+        { id: 'prod166', category: 'DESCARTABLE', descripcion: 'MONDADIENTES', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod167', category: 'DESCARTABLE', descripcion: 'REMOVEDORES', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod168', category: 'DESCARTABLE', descripcion: 'SERVILLETAS DOBLADAS', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod169', category: 'DESCARTABLE', descripcion: 'SORBETES X 50 BLANCOS', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod170', category: 'DESCARTABLE', descripcion: 'SORBETES NEGROS', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod171', category: 'DESCARTABLE', descripcion: 'VASOS DESCARTABLES', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod172', category: 'DESCARTABLE', descripcion: 'TENEDORES DESCARTABLES', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod173', category: 'DESCARTABLE', descripcion: 'PLATOS DESCARTABLES GRANDES', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod174', category: 'DESCARTABLE', descripcion: 'PLATOS DESCARTABLES CHICOS', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod175', category: 'DESCARTABLE', descripcion: 'TAPER 500 ML', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod176', category: 'DESCARTABLE', descripcion: 'POLIGRASA', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod177', category: 'DESCARTABLE', descripcion: 'ENVASE POLLERO', unidad: 'PQT', itemsPerUnit: 1.0 },
+        { id: 'prod178', category: 'DESCARTABLE', descripcion: 'CUCHILLO DESCARTABLE', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod179', category: 'POSTRE', descripcion: 'TRES LECHES', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod180', category: 'POSTRE', descripcion: 'MOUSE DE CHOCOLATE', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod181', category: 'POSTRE', descripcion: 'DERRUMBADO DE LÚCUMA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod182', category: 'POSTRE', descripcion: 'DERRUMBADO DE FRUTOS ROJOS', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod183', category: 'POSTRE', descripcion: 'CREMA VOLTEADA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod184', category: 'POSTRE', descripcion: 'TORTA DE CHOCOLATE', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod185', category: 'POSTRE', descripcion: 'POSTRES CUMPLEAÑOS', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod186', category: 'BEBIDAS NATURALES', descripcion: 'CHICHA MORADA', unidad: 'BAL', itemsPerUnit: 1.0 },
+        { id: 'prod187', category: 'BEBIDAS NATURALES', descripcion: 'MARACUYÁ', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod188', category: 'BEBIDAS NATURALES', descripcion: 'DESHIDRATADO DE LIMON', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod189', category: 'BEBIDAS NATURALES', descripcion: 'DESHIDRATADO DE NARANJA', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod190', category: 'BEBIDAS NATURALES', descripcion: 'DESHIDRATADO DE PIÑA', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod191', category: 'BEBIDAS NATURALES', descripcion: 'ARANDANO CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod192', category: 'BEBIDAS NATURALES', descripcion: 'PIÑA CONGELADO', unidad: 'BOL', itemsPerUnit: 1.0 },
+        { id: 'prod193', 'category': 'BEBIDAS NATURALES', 'descripcion': 'FRESA CONGELADO', 'unidad': 'BOL', 'itemsPerUnit': 1.0 },
+        { id: 'prod194', category: 'HORNO', descripcion: 'POLLO A LA BRASA', unidad: 'UND', itemsPerUnit: 1.0 },
+        { id: 'prod195', category: 'HORNO', descripcion: 'CARBÓN', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod196', category: 'HORNO', descripcion: 'LEÑA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod197', category: 'HORNO', descripcion: 'PAPA PROCESADA', unidad: 'KG', itemsPerUnit: 1.0 },
+        { id: 'prod198', category: 'HORNO', descripcion: 'LIGAS DE POLLO X 1000', unidad: 'BOL', itemsPerUnit: 1000 },
+    ];
 
 
     // --- FUNCIONES AUXILIARES ---
@@ -293,14 +292,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('productosContainer');
         container.innerHTML = '';
 
+        // Corregir la numeración de los IDs antes de hacer cualquier otra cosa
+        mockProductos.forEach((product, index) => {
+            product.id = `prod${index + 1}`;
+        });
+
         const productsByCategory = mockProductos.reduce((acc, product) => {
             const category = product.category || 'Sin Categoría';
             if (!acc[category]) acc[category] = [];
             acc[category].push(product);
             return acc;
         }, {});
+        
+        // --- CAMBIO PRINCIPAL: Obtener el orden original de las categorías ---
+        const orderedCategories = [];
+        mockProductos.forEach(product => {
+            const category = product.category || 'Sin Categoría';
+            if (!orderedCategories.includes(category)) {
+                orderedCategories.push(category);
+            }
+        });
 
-        for (const category in productsByCategory) {
+        // Renderizar las categorías en su orden original, no alfabéticamente
+        orderedCategories.forEach(category => {
             const isExpanded = false; // Ninguna categoría se expande por defecto
             
             const categoryDiv = document.createElement('div');
@@ -319,7 +333,10 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             const productListDiv = categoryDiv.querySelector('.product-list');
 
-            productsByCategory[category].forEach(prod => {
+            // Ordenar productos DENTRO de la categoría alfabéticamente (esto sí es útil)
+            const sortedProducts = productsByCategory[category].sort((a, b) => a.descripcion.localeCompare(b.descripcion));
+
+            sortedProducts.forEach(prod => {
                 const productRow = document.createElement('div');
                 productRow.className = 'product-row';
                 productRow.innerHTML = `
@@ -330,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 productListDiv.appendChild(productRow);
             });
             container.appendChild(categoryDiv);
-        }
+        });
     };
 
     /**
@@ -344,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="product-list expanded">
                 <div id="manual-rows-container">
-                    </div>
+                </div>
                 <button type="button" id="add-manual-product-btn">Añadir Producto</button>
             </div>
         `;
@@ -415,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Recopilar productos predefinidos
         document.querySelectorAll('.product-quantity').forEach(input => {
-            const cantidad = parseFloat(input.value);
+            const cantidad = parseFloat(input.value); // Cambiado a parseFloat para decimales
             if (cantidad > 0) {
                 const productId = input.dataset.productId;
                 const productDetail = mockProductos.find(p => p.id === productId);
@@ -435,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.manual-product-row').forEach(row => {
             const descripcion = row.querySelector('.manual-descripcion').value.trim();
             const unidad = row.querySelector('.manual-unidad').value.trim();
-            const cantidad = parseFloat(row.querySelector('.manual-cantidad').value);
+            const cantidad = parseFloat(row.querySelector('.manual-cantidad').value); // Cambiado a parseFloat para decimales
 
             if (descripcion && unidad && cantidad > 0) {
                 productsWithDetails.push({
@@ -507,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <tbody>${guiaGenerada.productos.map(p => `<tr>
                         <td style="padding: 3px 6px; font-size: 0.75rem; border: 1px solid #e2e8f0;">${p.nro}</td>
                         <td style="padding: 3px 6px; font-size: 0.75rem; border: 1px solid #e2e8f0;">${p.cantidad}</td>
-                        <td style="padding: 3px 6px; font-size: 0.75rem; border: 1px solid #e2e8f0;">${p.totalUnidadesIndividuales}</td>
+                        <td style="padding: 3px 6px; font-size: 0.75rem; border: 1px solid #e2e8f0;">${p.totalUnidadesIndividuales.toFixed(2)}</td>
                         <td style="padding: 3px 6px; font-size: 0.75rem; border: 1px solid #e2e8f0;">${p.unidad}</td>
                         <td style="padding: 3px 6px; font-size: 0.75rem; border: 1px solid #e2e8f0;">${p.descripcion}</td>
                     </tr>`).join('')}</tbody>
@@ -567,8 +584,6 @@ document.addEventListener('DOMContentLoaded', () => {
         printWindow.document.close();
         printWindow.focus(); // Necesario para algunos navegadores.
         printWindow.print();
-        // No cerrar la ventana automáticamente para máxima compatibilidad, especialmente en móviles.
-        // printWindow.close();
     });
 
     /**
@@ -623,4 +638,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Crea y muestra la sección para productos manuales.
     renderManualProductSection();
 });
-
