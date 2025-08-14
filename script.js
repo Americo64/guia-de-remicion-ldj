@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod23', category: 'VERDURAS', descripcion: 'CEBOLLA CHINA PROCESADA', unidad: 'PQT', itemsPerUnit: 1.0 },
             { id: 'prod24', category: 'VERDURAS', descripcion: 'NARANJA', unidad: 'KG', itemsPerUnit: 1.0 },
             { id: 'prod25', category: 'VERDURAS', descripcion: 'BRÓCOLI', unidad: 'KG', itemsPerUnit: 1.0 },
-            // --- NUEVOS PRODUCTOS AÑADIDOS ---
             { id: 'prod180', category: 'VERDURAS', descripcion: 'AJI AMARILLO', unidad: 'KILO', itemsPerUnit: 1.0 },
             { id: 'prod181', category: 'VERDURAS', descripcion: 'AJI LIMO', unidad: 'KILO', itemsPerUnit: 1.0 },
             { id: 'prod182', category: 'VERDURAS', descripcion: 'AJI PANCA', unidad: 'KILO', itemsPerUnit: 1.0 },
@@ -69,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'prod198', category: 'VERDURAS', descripcion: 'PEREJIL', unidad: 'ATADO', itemsPerUnit: 1.0 },
             { id: 'prod199', category: 'VERDURAS', descripcion: 'QUESO', unidad: 'UNIDAD', itemsPerUnit: 1.0 },
             { id: 'prod200', category: 'VERDURAS', descripcion: 'WANTAN', unidad: 'KILO', itemsPerUnit: 1.0 },
-            // --- FIN DE PRODUCTOS AÑADIDOS ---
             { id: 'prod26', category: 'ABARROTES', descripcion: 'ACEITE MONTESOL X 18 Lt.', unidad: 'LATA', itemsPerUnit: 1.0 },
             { id: 'prod27', category: 'ABARROTES', descripcion: 'ACEITE DE OLIVA', unidad: 'BOT', itemsPerUnit: 1.0 },
             { id: 'prod28', category: 'ABARROTES', descripcion: 'ANÍS', unidad: 'CAJA', itemsPerUnit: 1.0 },
@@ -625,3 +623,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Crea y muestra la sección para productos manuales.
     renderManualProductSection();
 });
+
