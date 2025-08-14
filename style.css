@@ -49,7 +49,7 @@ body {
 
 /* Estilo de la lista de productos cuando está expandida */
 .product-list.expanded {
-    max-height: 1500px; /* Una altura máxima suficientemente grande para mostrar todos los productos */
+    max-height: 3000px; /* Altura aumentada para mostrar listas largas de productos */
     border-left: 1px solid #e5e7eb; /* Bordes para enmarcar la lista */
     border-right: 1px solid #e5e7eb;
     border-bottom: 1px solid #e5e7eb;
@@ -75,8 +75,8 @@ body {
 
 /* Estilo para cada fila de producto */
 .product-row {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.75rem; /* Aumentado para más espacio vertical y corregir el solapamiento */
+    padding-bottom: 0.75rem; /* Aumentado para más espacio vertical y corregir el solapamiento */
     color: #1f2937; /* Color de texto principal */
 }
 
