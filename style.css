@@ -75,8 +75,8 @@ body {
 
 /* Estilo para cada fila de producto */
 .product-row {
-    padding-top: 0.75rem; /* Aumentado para más espacio vertical */
-    padding-bottom: 0.75rem; /* Aumentado para más espacio vertical */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     color: #1f2937; /* Color de texto principal */
 }
 
@@ -151,3 +151,4 @@ body {
 #add-manual-product-btn:hover {
     background-color: #15803d;
 }
+
